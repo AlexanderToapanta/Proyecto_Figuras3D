@@ -1,0 +1,11 @@
+C:\Users\Usuario\Documents\grafica\Proyecto_P2\Proyecto_Figuras3D\Figuras3D\Figuras3D\bin\Debug\Figuras3D.exe.config
+C:\Users\Usuario\Documents\grafica\Proyecto_P2\Proyecto_Figuras3D\Figuras3D\Figuras3D\bin\Debug\Figuras3D.exe
+C:\Users\Usuario\Documents\grafica\Proyecto_P2\Proyecto_Figuras3D\Figuras3D\Figuras3D\bin\Debug\Figuras3D.pdb
+C:\Users\Usuario\Documents\grafica\Proyecto_P2\Proyecto_Figuras3D\Figuras3D\Figuras3D\obj\Debug\Figuras3D.csproj.AssemblyReference.cache
+C:\Users\Usuario\Documents\grafica\Proyecto_P2\Proyecto_Figuras3D\Figuras3D\Figuras3D\obj\Debug\Figuras3D.Formularios.FormTestFiguras.resources
+C:\Users\Usuario\Documents\grafica\Proyecto_P2\Proyecto_Figuras3D\Figuras3D\Figuras3D\obj\Debug\Figuras3D.Properties.Resources.resources
+C:\Users\Usuario\Documents\grafica\Proyecto_P2\Proyecto_Figuras3D\Figuras3D\Figuras3D\obj\Debug\Figuras3D.csproj.GenerateResource.cache
+C:\Users\Usuario\Documents\grafica\Proyecto_P2\Proyecto_Figuras3D\Figuras3D\Figuras3D\obj\Debug\Figuras3D.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Documents\grafica\Proyecto_P2\Proyecto_Figuras3D\Figuras3D\Figuras3D\obj\Debug\Figuras3D.exe
+C:\Users\Usuario\Documents\grafica\Proyecto_P2\Proyecto_Figuras3D\Figuras3D\Figuras3D\obj\Debug\Figuras3D.pdb
+C:\Users\Usuario\Documents\grafica\Proyecto_P2\Proyecto_Figuras3D\Figuras3D\Figuras3D\obj\Debug\Figuras3D.exe.config
