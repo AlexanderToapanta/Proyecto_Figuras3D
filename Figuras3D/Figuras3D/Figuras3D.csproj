@@ -52,6 +52,30 @@
     <Compile Include="Clases\Esfera.cs" />
     <Compile Include="Clases\Figuras3D.cs" />
     <Compile Include="Clases\Piramide.cs" />
+    <Compile Include="Formularios\CilindroForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\CilindroForm.Designer.cs">
+      <DependentUpon>CilindroForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\ConoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\ConoForm.Designer.cs">
+      <DependentUpon>ConoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\CuboForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\CuboForm.Designer.cs">
+      <DependentUpon>CuboForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\EsferaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\EsferaForm.Designer.cs">
+      <DependentUpon>EsferaForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,10 +88,34 @@
     <Compile Include="Formularios\FormTestFiguras.Designer.cs">
       <DependentUpon>FormTestFiguras.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\PiramideForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\PiramideForm.Designer.cs">
+      <DependentUpon>PiramideForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Formularios\CilindroForm.resx">
+      <DependentUpon>CilindroForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\ConoForm.resx">
+      <DependentUpon>ConoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\CuboForm.resx">
+      <DependentUpon>CuboForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\EsferaForm.resx">
+      <DependentUpon>EsferaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FormTestFiguras.resx">
       <DependentUpon>FormTestFiguras.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\PiramideForm.resx">
+      <DependentUpon>PiramideForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

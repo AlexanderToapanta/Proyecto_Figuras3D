@@ -17,7 +17,7 @@ namespace Figuras3D
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormTestFiguras());
+            Application.Run(new Form1());
         }
     }
 }
