@@ -9,16 +9,16 @@ namespace Figuras3D.Clases
 {
     public enum TipoTextura
     {
-        Solido,           // Color sólido
-        Cuadricula,       // Patrón de cuadrícula
-        Rayas,            // Rayas horizontales
-        RayasVerticales,  // Rayas verticales
-        Puntos,           // Patrón de puntos
-        Degradado,        // Degradado de color
-        Marmol,           // Efecto mármol
-        Ladrillo,         // Patrón de ladrillos
-        Malla3D,          // Wireframe / Malla 3D
-        SoloMalla         // Solo Wireframe (sin relleno)
+        Solido,           
+        Cuadricula,       
+        Rayas,            
+        RayasVerticales,  
+        Puntos,           
+        Degradado,        
+        Marmol,           
+        Ladrillo,         
+        Malla3D,          
+        SoloMalla         
     }
     
     public class Material
@@ -139,9 +139,7 @@ namespace Figuras3D.Clases
             };
         }
 
-        /// <summary>
-        /// Clona el material
-        /// </summary>
+
         public Material Clonar()
         {
             return new Material()

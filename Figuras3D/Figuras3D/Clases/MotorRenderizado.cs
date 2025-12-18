@@ -10,9 +10,6 @@ namespace Figuras3D.Clases
 {
     internal class MotorRenderizado
     {
-        /// <summary>
-        /// Configuración de proyección
-        /// </summary>
         public float EscalaProyeccion { get; set; } = 200f;
         public float FactorPerspectiva { get; set; } = 0.3f;
         public bool UsarIluminacion { get; set; } = true;
@@ -22,35 +19,26 @@ namespace Figuras3D.Clases
         public Color ColorBordes { get; set; } = Color.FromArgb(100, 255, 255, 255);
         public bool UsarBackfaceCulling { get; set; } = true;
         
-        // Propiedades para malla 3D
-        public Color ColorMalla { get; set; } = Color.FromArgb(255, 0, 255, 0); // Verde brillante por defecto
+        public Color ColorMalla { get; set; } = Color.FromArgb(255, 0, 255, 0); 
         public float GrosorMalla { get; set; } = 2.0f;
         
-        // Cámara activa
         public Camara CamaraActiva { get; set; } = Camara.CrearCamaraLibre();
 
-        /// <summary>
-        /// Renderiza una figura 3D con iluminación y texturas
-        /// </summary>
+
         public void RenderizarFigura(Graphics g, Figura3D figura, int anchoPanel, int altoPanel)
         {
             if (figura == null) return;
 
-            // Configurar suavizado
             g.SmoothingMode = SmoothingMode.AntiAlias;
 
-            // Obtener geometría transformada
             List<Point3D> vertices3D = figura.ObtenerVerticesTransformados();
             List<int[]> caras = figura.ObtenerCaras();
 
-            // Proyectar vértices a 2D
             List<PointF> vertices2D = ProyectarVertices(vertices3D, anchoPanel, altoPanel);
 
-            // Verificar si la textura es de tipo malla (wireframe)
             bool esMalla3D = figura.Material.Textura == TipoTextura.Malla3D;
             bool esSoloMalla = figura.Material.Textura == TipoTextura.SoloMalla;
-
-            // Si está en modo solo malla, renderizar solo wireframe y salir
+            
             if (esSoloMalla)
             {
                 DibujarMalla3D(g, caras, vertices2D);
@@ -61,49 +49,40 @@ namespace Figuras3D.Clases
                 return;
             }
 
-            // Crear lista de caras con información adicional
             List<CaraRenderizada> carasParaRenderizar = new List<CaraRenderizada>();
 
             foreach (int[] cara in caras)
             {
                 if (cara.Length < 3) continue;
 
-                // Obtener vértices de la cara
                 Point3D v1 = vertices3D[cara[0]];
                 Point3D v2 = vertices3D[cara[1]];
                 Point3D v3 = vertices3D[cara[2]];
 
-                // Calcular normal de la cara
                 Point3D normal = Iluminacion.CalcularNormalCara(v1, v2, v3);
 
-                // Calcular centro de la cara para ordenamiento por profundidad
                 float profundidad = (v1.Z + v2.Z + v3.Z) / 3f;
 
-                // Verificar si la cara está visible usando el método correcto
                 bool esVisible = true;
 
                 if (UsarBackfaceCulling)
                 {
-                    // Calcular el centro de la cara
                     Point3D centro = new Point3D(
                         (v1.X + v2.X + v3.X) / 3f,
                         (v1.Y + v2.Y + v3.Y) / 3f,
                         (v1.Z + v2.Z + v3.Z) / 3f
                     );
 
-                    // Vector desde la cara hacia la cámara (asumiendo cámara en 0,0,5)
                     Point3D vectorCamara = new Point3D(
                         0 - centro.X,
                         0 - centro.Y,
                         5 - centro.Z
                     );
 
-                    // Producto punto entre la normal y el vector hacia la cámara
                     float productoPunto = normal.X * vectorCamara.X +
                                          normal.Y * vectorCamara.Y +
                                          normal.Z * vectorCamara.Z;
 
-                    // La cara es visible si la normal apunta hacia la cámara
                     esVisible = productoPunto > 0;
                 }
 
@@ -150,15 +129,10 @@ namespace Figuras3D.Clases
             }
         }
 
-        /// <summary>
-        /// Renderiza una cara individual
-        /// </summary>
         private void RenderizarCara(Graphics g, Figura3D figura, CaraRenderizada caraInfo, List<PointF> vertices2D)
         {
-            // Crear puntos 2D de la cara
             PointF[] puntos2D = caraInfo.Indices.Select(i => vertices2D[i]).ToArray();
 
-            // Calcular color con iluminación
             Color colorBase;
             if (UsarIluminacion && figura.Iluminacion != null && figura.Iluminacion.Habilitada)
             {
@@ -187,8 +161,6 @@ namespace Figuras3D.Clases
                     g.FillPolygon(brushTextura, puntos2D);
                 }
                 
-                // Aplicar un overlay de color con iluminación y propiedades del material
-                // Esto permite que la textura se vea pero con los efectos del material y la luz
                 int alphaOverlay = (int)(figura.Material.Opacidad * 255 * 0.5f); // 50% de opacidad para el overlay
                 using (SolidBrush overlayBrush = new SolidBrush(Color.FromArgb(alphaOverlay, colorBase)))
                 {
@@ -214,9 +186,6 @@ namespace Figuras3D.Clases
             }
         }
 
-        /// <summary>
-        /// Proyecta vértices 3D a coordenadas 2D en pantalla
-        /// </summary>
         private List<PointF> ProyectarVertices(List<Point3D> vertices3D, int ancho, int alto)
         {
             List<PointF> vertices2D = new List<PointF>();
@@ -235,9 +204,6 @@ namespace Figuras3D.Clases
             return vertices2D;
         }
 
-        /// <summary>
-        /// Obtiene el rectángulo delimitador de un conjunto de puntos
-        /// </summary>
         private Rectangle ObtenerRectanguloDelimitador(PointF[] puntos)
         {
             if (puntos.Length == 0)
@@ -268,9 +234,6 @@ namespace Figuras3D.Clases
             return new Rectangle(x, y, w, h);
         }
 
-        /// <summary>
-        /// Dibuja el contorno de selección
-        /// </summary>
         private void DibujarSeleccion(Graphics g, List<PointF> vertices2D)
         {
             if (vertices2D.Count == 0) return;
@@ -295,9 +258,6 @@ namespace Figuras3D.Clases
             }
         }
 
-        /// <summary>
-        /// Dibuja información de depuración
-        /// </summary>
         public void DibujarInformacionDebug(Graphics g, Figura3D figura, int x, int y)
         {
             using (Font font = new Font("Consolas", 9))
@@ -318,9 +278,6 @@ namespace Figuras3D.Clases
             }
         }
 
-        /// <summary>
-        /// Dibuja la malla 3D (wireframe) de la figura
-        /// </summary>
         private void DibujarMalla3D(Graphics g, List<int[]> caras, List<PointF> vertices2D)
         {
             using (Pen penMalla = new Pen(ColorMalla, GrosorMalla))
@@ -359,9 +316,7 @@ namespace Figuras3D.Clases
             }
         }
     }
-    /// <summary>
-    /// Estructura auxiliar para almacenar información de una cara a renderizar
-    /// </summary>
+
     internal class CaraRenderizada
     {
         public int[] Indices { get; set; }

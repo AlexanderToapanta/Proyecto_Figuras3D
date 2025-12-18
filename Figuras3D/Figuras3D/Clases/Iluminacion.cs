@@ -128,9 +128,6 @@ namespace Figuras3D.Clases
             return Color.FromArgb(alpha, r, g, b);
         }
 
-        /// <summary>
-        /// Calcula el vector de reflexión
-        /// </summary>
         private Point3D CalcularReflexion(Point3D incidente, Point3D normal)
         {
             float producto = 2 * (

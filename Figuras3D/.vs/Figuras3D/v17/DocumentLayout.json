@@ -1,50 +1,86 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\MEGAPC\\OneDrive\\Escritorio\\GRAFICA\\Proyect parcial2\\Proyecto_Figuras3D\\Figuras3D\\",
+  "WorkspaceRootPath": "C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|c:\\users\\megapc\\onedrive\\escritorio\\grafica\\proyect parcial2\\proyecto_figuras3d\\figuras3d\\figuras3d\\clases\\camara.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|solutionrelative:figuras3d\\clases\\camara.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|c:\\users\\dell\\documents\\proyecto_2p_grafica\\proyecto_figuras3d\\figuras3d\\figuras3d\\clases\\esfera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|solutionrelative:figuras3d\\clases\\esfera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|C:\\Users\\MEGAPC\\OneDrive\\Escritorio\\GRAFICA\\Proyect parcial2\\Proyecto_Figuras3D\\Figuras3D\\figuras3d\\clases\\visualizacionfiguras.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|c:\\users\\dell\\documents\\proyecto_2p_grafica\\proyecto_figuras3d\\figuras3d\\figuras3d\\clases\\cubo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|solutionrelative:figuras3d\\clases\\cubo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|c:\\users\\dell\\documents\\proyecto_2p_grafica\\proyecto_figuras3d\\figuras3d\\figuras3d\\clases\\cilindro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|solutionrelative:figuras3d\\clases\\cilindro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|c:\\users\\dell\\documents\\proyecto_2p_grafica\\proyecto_figuras3d\\figuras3d\\figuras3d\\clases\\cono.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|solutionrelative:figuras3d\\clases\\cono.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\figuras3d\\clases\\visualizacionfiguras.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|solutionrelative:figuras3d\\clases\\visualizacionfiguras.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|c:\\users\\megapc\\onedrive\\escritorio\\grafica\\proyect parcial2\\proyecto_figuras3d\\figuras3d\\figuras3d\\clases\\motorrenderizado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|c:\\users\\dell\\documents\\proyecto_2p_grafica\\proyecto_figuras3d\\figuras3d\\figuras3d\\clases\\piramide.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|solutionrelative:figuras3d\\clases\\piramide.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\figuras3d\\clases\\motorrenderizado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|solutionrelative:figuras3d\\clases\\motorrenderizado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|c:\\users\\megapc\\onedrive\\escritorio\\grafica\\proyect parcial2\\proyecto_figuras3d\\figuras3d\\figuras3d\\clases\\iluminacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|solutionrelative:figuras3d\\clases\\iluminacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|c:\\users\\megapc\\onedrive\\escritorio\\grafica\\proyect parcial2\\proyecto_figuras3d\\figuras3d\\figuras3d\\clases\\gestortexturas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|solutionrelative:figuras3d\\clases\\gestortexturas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|c:\\users\\megapc\\onedrive\\escritorio\\grafica\\proyect parcial2\\proyecto_figuras3d\\figuras3d\\figuras3d\\clases\\material.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\figuras3d\\clases\\material.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|solutionrelative:figuras3d\\clases\\material.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|c:\\users\\megapc\\onedrive\\escritorio\\grafica\\proyect parcial2\\proyecto_figuras3d\\figuras3d\\figuras3d\\formularios\\cilindroform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|solutionrelative:figuras3d\\formularios\\cilindroform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\figuras3d\\clases\\camara.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|solutionrelative:figuras3d\\clases\\camara.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|C:\\Users\\MEGAPC\\OneDrive\\Escritorio\\GRAFICA\\Proyect parcial2\\Proyecto_Figuras3D\\Figuras3D\\figuras3d\\formularios\\esferaform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|solutionrelative:figuras3d\\formularios\\esferaform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|c:\\users\\dell\\documents\\proyecto_2p_grafica\\proyecto_figuras3d\\figuras3d\\figuras3d\\clases\\figuras3d.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|solutionrelative:figuras3d\\clases\\figuras3d.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|C:\\Users\\MEGAPC\\OneDrive\\Escritorio\\GRAFICA\\Proyect parcial2\\Proyecto_Figuras3D\\Figuras3D\\figuras3d\\formularios\\cuboform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|solutionrelative:figuras3d\\formularios\\cuboform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\figuras3d\\clases\\iluminacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|solutionrelative:figuras3d\\clases\\iluminacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|C:\\Users\\MEGAPC\\OneDrive\\Escritorio\\GRAFICA\\Proyect parcial2\\Proyecto_Figuras3D\\Figuras3D\\figuras3d\\formularios\\conoform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\figuras3d\\formularios\\conoform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|solutionrelative:figuras3d\\formularios\\conoform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|C:\\Users\\MEGAPC\\OneDrive\\Escritorio\\GRAFICA\\Proyect parcial2\\Proyecto_Figuras3D\\Figuras3D\\figuras3d\\formularios\\piramideform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\figuras3d\\formularios\\esferaform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|solutionrelative:figuras3d\\formularios\\esferaform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\figuras3d\\formularios\\cuboform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|solutionrelative:figuras3d\\formularios\\cuboform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\figuras3d\\formularios\\piramideform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|solutionrelative:figuras3d\\formularios\\piramideform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|c:\\users\\dell\\documents\\proyecto_2p_grafica\\proyecto_figuras3d\\figuras3d\\figuras3d\\formularios\\cilindroform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|solutionrelative:figuras3d\\formularios\\cilindroform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\figuras3d\\formularios\\cilindroform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|solutionrelative:figuras3d\\formularios\\cilindroform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|c:\\users\\dell\\documents\\proyecto_2p_grafica\\proyecto_figuras3d\\figuras3d\\figuras3d\\formularios\\cuboform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|solutionrelative:figuras3d\\formularios\\cuboform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|c:\\users\\dell\\documents\\proyecto_2p_grafica\\proyecto_figuras3d\\figuras3d\\figuras3d\\formularios\\cuboform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|solutionrelative:figuras3d\\formularios\\cuboform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\figuras3d\\clases\\gestortexturas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AA6D2AD2-667E-414A-A651-FC20578D7E40}|Figuras3D\\Figuras3D.csproj|solutionrelative:figuras3d\\clases\\gestortexturas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -54,172 +90,265 @@
       "DocumentGroups": [
         {
           "DockedHeight": 349,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 7,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
-            }
-          ]
-        },
-        {
-          "DockedHeight": 19,
-          "SelectedChildIndex": 8,
-          "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Piramide.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Clases\\Piramide.cs",
+              "RelativeDocumentMoniker": "Figuras3D\\Clases\\Piramide.cs",
+              "ToolTip": "C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Clases\\Piramide.cs",
+              "RelativeToolTip": "Figuras3D\\Clases\\Piramide.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-18T15:05:29.804Z",
+              "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{28836128-fc2c-11d2-a433-00c04f72d18a}"
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Cono.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Clases\\Cono.cs",
+              "RelativeDocumentMoniker": "Figuras3D\\Clases\\Cono.cs",
+              "ToolTip": "C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Clases\\Cono.cs",
+              "RelativeToolTip": "Figuras3D\\Clases\\Cono.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-18T15:03:48.168Z",
+              "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Cubo.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Clases\\Cubo.cs",
+              "RelativeDocumentMoniker": "Figuras3D\\Clases\\Cubo.cs",
+              "ToolTip": "C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Clases\\Cubo.cs",
+              "RelativeToolTip": "Figuras3D\\Clases\\Cubo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-18T15:02:38.323Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "Cilindro.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Clases\\Cilindro.cs",
+              "RelativeDocumentMoniker": "Figuras3D\\Clases\\Cilindro.cs",
+              "ToolTip": "C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Clases\\Cilindro.cs",
+              "RelativeToolTip": "Figuras3D\\Clases\\Cilindro.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-18T14:50:25.633Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "CuboForm.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Formularios\\CuboForm.Designer.cs",
+              "RelativeDocumentMoniker": "Figuras3D\\Formularios\\CuboForm.Designer.cs",
+              "ToolTip": "C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Formularios\\CuboForm.Designer.cs",
+              "RelativeToolTip": "Figuras3D\\Formularios\\CuboForm.Designer.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-18T14:40:13.095Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "CuboForm.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Formularios\\CuboForm.cs",
+              "RelativeDocumentMoniker": "Figuras3D\\Formularios\\CuboForm.cs",
+              "ToolTip": "C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Formularios\\CuboForm.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Figuras3D\\Formularios\\CuboForm.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-18T14:37:51.112Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Figuras3D.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Clases\\Figuras3D.cs",
+              "RelativeDocumentMoniker": "Figuras3D\\Clases\\Figuras3D.cs",
+              "ToolTip": "C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Clases\\Figuras3D.cs",
+              "RelativeToolTip": "Figuras3D\\Clases\\Figuras3D.cs",
+              "ViewState": "AgIAAG4AAAAAAAAAAAAAABsAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-18T14:31:38.836Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Esfera.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Clases\\Esfera.cs",
+              "RelativeDocumentMoniker": "Figuras3D\\Clases\\Esfera.cs",
+              "ToolTip": "C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Clases\\Esfera.cs",
+              "RelativeToolTip": "Figuras3D\\Clases\\Esfera.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-18T14:25:16.816Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "CilindroForm.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Formularios\\CilindroForm.cs",
+              "RelativeDocumentMoniker": "Figuras3D\\Formularios\\CilindroForm.cs",
+              "ToolTip": "C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Formularios\\CilindroForm.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Figuras3D\\Formularios\\CilindroForm.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-18T13:08:36.38Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "MotorRenderizado.cs",
-              "DocumentMoniker": "C:\\Users\\MEGAPC\\OneDrive\\Escritorio\\GRAFICA\\Proyect parcial2\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Clases\\MotorRenderizado.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Clases\\MotorRenderizado.cs",
               "RelativeDocumentMoniker": "Figuras3D\\Clases\\MotorRenderizado.cs",
-              "ToolTip": "C:\\Users\\MEGAPC\\OneDrive\\Escritorio\\GRAFICA\\Proyect parcial2\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Clases\\MotorRenderizado.cs",
+              "ToolTip": "C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Clases\\MotorRenderizado.cs",
               "RelativeToolTip": "Figuras3D\\Clases\\MotorRenderizado.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD4BAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-18T03:24:32.751Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 10,
               "Title": "Iluminacion.cs",
-              "DocumentMoniker": "C:\\Users\\MEGAPC\\OneDrive\\Escritorio\\GRAFICA\\Proyect parcial2\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Clases\\Iluminacion.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Clases\\Iluminacion.cs",
               "RelativeDocumentMoniker": "Figuras3D\\Clases\\Iluminacion.cs",
-              "ToolTip": "C:\\Users\\MEGAPC\\OneDrive\\Escritorio\\GRAFICA\\Proyect parcial2\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Clases\\Iluminacion.cs",
+              "ToolTip": "C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Clases\\Iluminacion.cs",
               "RelativeToolTip": "Figuras3D\\Clases\\Iluminacion.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABIAAAAAAAAAAAAYwIEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-18T03:24:09.588Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 19,
               "Title": "GestorTexturas.cs",
-              "DocumentMoniker": "C:\\Users\\MEGAPC\\OneDrive\\Escritorio\\GRAFICA\\Proyect parcial2\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Clases\\GestorTexturas.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Clases\\GestorTexturas.cs",
               "RelativeDocumentMoniker": "Figuras3D\\Clases\\GestorTexturas.cs",
-              "ToolTip": "C:\\Users\\MEGAPC\\OneDrive\\Escritorio\\GRAFICA\\Proyect parcial2\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Clases\\GestorTexturas.cs",
+              "ToolTip": "C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Clases\\GestorTexturas.cs",
               "RelativeToolTip": "Figuras3D\\Clases\\GestorTexturas.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-18T03:22:52.352Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "Material.cs",
-              "DocumentMoniker": "C:\\Users\\MEGAPC\\OneDrive\\Escritorio\\GRAFICA\\Proyect parcial2\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Clases\\Material.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Clases\\Material.cs",
               "RelativeDocumentMoniker": "Figuras3D\\Clases\\Material.cs",
-              "ToolTip": "C:\\Users\\MEGAPC\\OneDrive\\Escritorio\\GRAFICA\\Proyect parcial2\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Clases\\Material.cs",
+              "ToolTip": "C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Clases\\Material.cs",
               "RelativeToolTip": "Figuras3D\\Clases\\Material.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-18T03:19:45.788Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 8,
               "Title": "Camara.cs",
-              "DocumentMoniker": "C:\\Users\\MEGAPC\\OneDrive\\Escritorio\\GRAFICA\\Proyect parcial2\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Clases\\Camara.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Clases\\Camara.cs",
               "RelativeDocumentMoniker": "Figuras3D\\Clases\\Camara.cs",
-              "ToolTip": "C:\\Users\\MEGAPC\\OneDrive\\Escritorio\\GRAFICA\\Proyect parcial2\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Clases\\Camara.cs",
+              "ToolTip": "C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Clases\\Camara.cs",
               "RelativeToolTip": "Figuras3D\\Clases\\Camara.cs",
-              "ViewState": "AgIAAKoAAAAAMzMzMxMxwLkAAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-18T03:18:03.216Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 15,
               "Title": "CilindroForm.cs",
-              "DocumentMoniker": "C:\\Users\\MEGAPC\\OneDrive\\Escritorio\\GRAFICA\\Proyect parcial2\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Formularios\\CilindroForm.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Formularios\\CilindroForm.cs",
               "RelativeDocumentMoniker": "Figuras3D\\Formularios\\CilindroForm.cs",
-              "ToolTip": "C:\\Users\\MEGAPC\\OneDrive\\Escritorio\\GRAFICA\\Proyect parcial2\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Formularios\\CilindroForm.cs",
+              "ToolTip": "C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Formularios\\CilindroForm.cs",
               "RelativeToolTip": "Figuras3D\\Formularios\\CilindroForm.cs",
-              "ViewState": "AgIAAEcCAAAAAAAAAAAAAEcCAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAmwF8AAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-18T03:06:55.32Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "VisualizacionFiguras.cs",
-              "DocumentMoniker": "C:\\Users\\MEGAPC\\OneDrive\\Escritorio\\GRAFICA\\Proyect parcial2\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Clases\\VisualizacionFiguras.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Clases\\VisualizacionFiguras.cs",
               "RelativeDocumentMoniker": "Figuras3D\\Clases\\VisualizacionFiguras.cs",
-              "ToolTip": "C:\\Users\\MEGAPC\\OneDrive\\Escritorio\\GRAFICA\\Proyect parcial2\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Clases\\VisualizacionFiguras.cs",
+              "ToolTip": "C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Clases\\VisualizacionFiguras.cs",
               "RelativeToolTip": "Figuras3D\\Clases\\VisualizacionFiguras.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAoAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-18T02:49:40.86Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 14,
               "Title": "PiramideForm.cs",
-              "DocumentMoniker": "C:\\Users\\MEGAPC\\OneDrive\\Escritorio\\GRAFICA\\Proyect parcial2\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Formularios\\PiramideForm.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Formularios\\PiramideForm.cs",
               "RelativeDocumentMoniker": "Figuras3D\\Formularios\\PiramideForm.cs",
-              "ToolTip": "C:\\Users\\MEGAPC\\OneDrive\\Escritorio\\GRAFICA\\Proyect parcial2\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Formularios\\PiramideForm.cs",
+              "ToolTip": "C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Formularios\\PiramideForm.cs",
               "RelativeToolTip": "Figuras3D\\Formularios\\PiramideForm.cs",
-              "ViewState": "AgIAAEECAAAAAAAAAABBwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEoAAAAAAAAAAAAgwF8AAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-18T03:01:46.816Z"
+              "WhenOpened": "2025-12-18T03:01:46.816Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "ConoForm.cs",
-              "DocumentMoniker": "C:\\Users\\MEGAPC\\OneDrive\\Escritorio\\GRAFICA\\Proyect parcial2\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Formularios\\ConoForm.cs",
-              "RelativeDocumentMoniker": "Figuras3D\\Formularios\\ConoForm.cs",
-              "ToolTip": "C:\\Users\\MEGAPC\\OneDrive\\Escritorio\\GRAFICA\\Proyect parcial2\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Formularios\\ConoForm.cs",
-              "RelativeToolTip": "Figuras3D\\Formularios\\ConoForm.cs",
-              "ViewState": "AgIAAEECAAAAAAAAAABBwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-18T03:00:05.457Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 13,
               "Title": "CuboForm.cs",
-              "DocumentMoniker": "C:\\Users\\MEGAPC\\OneDrive\\Escritorio\\GRAFICA\\Proyect parcial2\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Formularios\\CuboForm.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Formularios\\CuboForm.cs",
               "RelativeDocumentMoniker": "Figuras3D\\Formularios\\CuboForm.cs",
-              "ToolTip": "C:\\Users\\MEGAPC\\OneDrive\\Escritorio\\GRAFICA\\Proyect parcial2\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Formularios\\CuboForm.cs",
+              "ToolTip": "C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Formularios\\CuboForm.cs",
               "RelativeToolTip": "Figuras3D\\Formularios\\CuboForm.cs",
-              "ViewState": "AgIAAFYCAAAAAAAAAABBwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAiwFwAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-18T02:57:55.212Z"
+              "WhenOpened": "2025-12-18T02:57:55.212Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 12,
               "Title": "EsferaForm.cs",
-              "DocumentMoniker": "C:\\Users\\MEGAPC\\OneDrive\\Escritorio\\GRAFICA\\Proyect parcial2\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Formularios\\EsferaForm.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Formularios\\EsferaForm.cs",
               "RelativeDocumentMoniker": "Figuras3D\\Formularios\\EsferaForm.cs",
-              "ToolTip": "C:\\Users\\MEGAPC\\OneDrive\\Escritorio\\GRAFICA\\Proyect parcial2\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Formularios\\EsferaForm.cs",
+              "ToolTip": "C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Formularios\\EsferaForm.cs",
               "RelativeToolTip": "Figuras3D\\Formularios\\EsferaForm.cs",
-              "ViewState": "AgIAAPkBAADMzMzMzMwhwBEAAAAoAAAAAAAAAA==",
+              "ViewState": "AgIAAFgAAAAAAAAAAAAkwF8AAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-18T00:39:47.754Z"
+              "WhenOpened": "2025-12-18T00:39:47.754Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ConoForm.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Formularios\\ConoForm.cs",
+              "RelativeDocumentMoniker": "Figuras3D\\Formularios\\ConoForm.cs",
+              "ToolTip": "C:\\Users\\DELL\\Documents\\PROYECTO_2P_GRAFICA\\Proyecto_Figuras3D\\Figuras3D\\Figuras3D\\Formularios\\ConoForm.cs",
+              "RelativeToolTip": "Figuras3D\\Formularios\\ConoForm.cs",
+              "ViewState": "AgIAAPoAAAAAAAAAAAD4vxkBAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-18T03:00:05.457Z",
+              "EditorCaption": ""
             }
           ]
         }

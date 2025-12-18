@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace Figuras3D.Clases
 {
-    /// <summary>
-    /// Tipos de vistas predefinidas de cámara
-    /// </summary>
+
     public enum TipoCamara
     {
         Libre,          // Vista libre controlada por el usuario
@@ -22,9 +20,6 @@ namespace Figuras3D.Clases
         Perspectiva     // Vista en perspectiva diagonal
     }
 
-    /// <summary>
-    /// Clase que representa una cámara con posición y rotación
-    /// </summary>
     public class Camara
     {
         public Point3D Posicion { get; set; }
@@ -48,9 +43,6 @@ namespace Figuras3D.Clases
             Tipo = tipo;
         }
 
-        /// <summary>
-        /// Crea una cámara con vista frontal
-        /// </summary>
         public static Camara CrearCamaraFrontal()
         {
             return new Camara(
@@ -61,9 +53,6 @@ namespace Figuras3D.Clases
             );
         }
 
-        /// <summary>
-        /// Crea una cámara con vista trasera
-        /// </summary>
         public static Camara CrearCamaraTrasera()
         {
             return new Camara(
@@ -74,9 +63,6 @@ namespace Figuras3D.Clases
             );
         }
 
-        /// <summary>
-        /// Crea una cámara con vista superior
-        /// </summary>
         public static Camara CrearCamaraSuperior()
         {
             return new Camara(
@@ -87,9 +73,6 @@ namespace Figuras3D.Clases
             );
         }
 
-        /// <summary>
-        /// Crea una cámara con vista inferior
-        /// </summary>
         public static Camara CrearCamaraInferior()
         {
             return new Camara(
@@ -100,9 +83,6 @@ namespace Figuras3D.Clases
             );
         }
 
-        /// <summary>
-        /// Crea una cámara con vista lateral derecha
-        /// </summary>
         public static Camara CrearCamaraLateral()
         {
             return new Camara(
@@ -113,9 +93,6 @@ namespace Figuras3D.Clases
             );
         }
 
-        /// <summary>
-        /// Crea una cámara con vista lateral izquierda
-        /// </summary>
         public static Camara CrearCamaraLateralIzquierda()
         {
             return new Camara(
@@ -126,9 +103,6 @@ namespace Figuras3D.Clases
             );
         }
 
-        /// <summary>
-        /// Crea una cámara con vista isométrica
-        /// </summary>
         public static Camara CrearCamaraIsometrica()
         {
             return new Camara(
@@ -139,9 +113,6 @@ namespace Figuras3D.Clases
             );
         }
 
-        /// <summary>
-        /// Crea una cámara con vista en perspectiva
-        /// </summary>
         public static Camara CrearCamaraPerspectiva()
         {
             return new Camara(
@@ -152,9 +123,6 @@ namespace Figuras3D.Clases
             );
         }
 
-        /// <summary>
-        /// Crea una cámara libre (controlada por el usuario)
-        /// </summary>
         public static Camara CrearCamaraLibre()
         {
             return new Camara(
@@ -165,9 +133,6 @@ namespace Figuras3D.Clases
             );
         }
 
-        /// <summary>
-        /// Clona la cámara actual
-        /// </summary>
         public Camara Clonar()
         {
             return new Camara(
@@ -178,9 +143,6 @@ namespace Figuras3D.Clases
             );
         }
 
-        /// <summary>
-        /// Obtiene el nombre descriptivo de la cámara
-        /// </summary>
         public string ObtenerNombre()
         {
             switch (Tipo)

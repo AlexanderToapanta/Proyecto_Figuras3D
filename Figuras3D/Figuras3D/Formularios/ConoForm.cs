@@ -28,33 +28,26 @@ namespace Figuras3D.Formularios
         {
             InitializeComponent();
             
-            // Inicializar cono con material por defecto
             cono = new Cono("Cono Naranja", 20);
             cono.ColorFigura = Color.Orange;
             cono.Material = Material.CrearPlastico(Color.Orange);
             cono.Iluminacion = Iluminacion.CrearIluminacionEstudio();
             
-            // GUARDAR color original
             colorOriginalFigura = Color.Orange;
             
-            // Inicializar motor de renderizado
             motorRenderizado = new MotorRenderizado();
             
             panelVisualizacion.DoubleBuffered(true);
 
-            // Eventos del mouse
             panelVisualizacion.MouseDown += PanelVisualizacion_MouseDown;
             panelVisualizacion.MouseMove += PanelVisualizacion_MouseMove;
             panelVisualizacion.MouseUp += PanelVisualizacion_MouseUp;
             panelVisualizacion.MouseWheel += PanelVisualizacion_MouseWheel;
             
-            // Inicializar controles
             InicializarControles();
             
-            // Crear botones flotantes usando helper
             CrearBotonesFlotantes();
             
-            // Aplicar decoraciones visuales
             AplicarDecoracionesVisuales();
         }
         
@@ -90,17 +83,13 @@ namespace Figuras3D.Formularios
         }
 
         private void InicializarControles()
-        {
-            // Configurar ComboBox de Textura
-            comboTextura.SelectedIndex = 0; // Sólido por defecto
+        { 
             comboTextura.SelectedIndexChanged += ComboBoxTextura_SelectedIndexChanged;
-            
-            // Configurar ComboBox de Material
+            comboTextura.SelectedIndex = 8; 
+
             comboMaterial.SelectedIndex = 0; // Plástico por defecto
             comboMaterial.SelectedIndexChanged += ComboBoxMaterial_SelectedIndexChanged;
             
-            // Configurar ComboBox de Ambiente (Hora del día) - solo cambia el fondo
-            // Agregar opción "Seleccione..." al inicio si no existe
             if (comboAmbiente.Items.Count > 0 && comboAmbiente.Items[0].ToString() != "Seleccione...")
             {
                 comboAmbiente.Items.Insert(0, "Seleccione...");
@@ -108,7 +97,6 @@ namespace Figuras3D.Formularios
             comboAmbiente.SelectedIndex = 0; // Mostrar "Seleccione..." por defecto
             comboAmbiente.SelectedIndexChanged += ComboBoxAmbiente_SelectedIndexChanged;
             
-            // Configurar TrackBar de Intensidad de Luz del FONDO
             trackBarBrillo.Minimum = 30;  // Mínimo brillo del fondo
             trackBarBrillo.Maximum = 100; // Máximo brillo del fondo
             trackBarBrillo.Value = 70;    // Valor predeterminado
@@ -249,12 +237,10 @@ namespace Figuras3D.Formularios
 
         private void ComboBoxMaterial_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // GUARDAR la textura actual y propiedades antes de cambiar material
             TipoTextura texturaActual = cono.Material.Textura;
             Color colorSecundario = cono.Material.ColorSecundario;
             float escalaTextura = cono.Material.EscalaTextura;
             
-            // Aplicar material predefinido según selección
             switch (comboMaterial.SelectedIndex)
             {
                 case 0: // Plástico
@@ -274,8 +260,6 @@ namespace Figuras3D.Formularios
                     // El oro usa su propio color dorado, NO restauramos el original
                     break;
             }
-            
-            // RESTAURAR la textura y propiedades que tenía antes
             cono.Material.Textura = texturaActual;
             cono.Material.ColorSecundario = colorSecundario;
             cono.Material.EscalaTextura = escalaTextura;
@@ -285,21 +269,17 @@ namespace Figuras3D.Formularios
 
         private void ComboBoxAmbiente_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Si está en "Seleccione...", no hacer nada (mantener fondo predeterminado)
             if (comboAmbiente.SelectedIndex == 0)
             {
-                // Mantener el fondo inicial (azul cielo día)
                 panelVisualizacion.BackColor = Color.FromArgb(135, 206, 250);
                 AplicarBrilloAlFondo();
                 panelVisualizacion.Invalidate();
                 return;
             }
             
-            // Cambiar SOLO el color de fondo del panel según la hora del día
-            // Restar 1 al índice porque ahora "Seleccione..." ocupa el índice 0
             switch (comboAmbiente.SelectedIndex - 1)
             {
-                case 0: // Día - Fondo azul cielo brillante
+                case 0: 
                     panelVisualizacion.BackColor = Color.FromArgb(135, 206, 250);
                     break;
 

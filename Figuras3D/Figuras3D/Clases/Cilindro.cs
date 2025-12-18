@@ -4,26 +4,18 @@ using System.Drawing;
 
 namespace Figuras3D
 {
-    /// <summary>
-    /// CLASE CILINDRO - Figura 3D básica
-    /// </summary>
+
     public class Cilindro : Figura3D
     {
         private int segmentos; // Número de lados del cilindro
 
-        /// <summary>
-        /// Constructor del cilindro
-        /// </summary>
         public Cilindro(string nombre = "Cilindro", int segmentos = 16) : base(nombre)
         {
-            this.segmentos = Math.Max(3, segmentos); // Mínimo 3 lados (triángulo)
-            ColorFigura = Color.Green; // Color por defecto
+            this.segmentos = Math.Max(3, segmentos); 
+            ColorFigura = Color.Green; 
             GenerarGeometria();
         }
 
-        /// <summary>
-        /// Genera la geometría del cilindro
-        /// </summary>
         public override void GenerarGeometria()
         {
             vertices.Clear();
@@ -48,7 +40,6 @@ namespace Figuras3D
                 vertices.Add(new Point3D(x, mitadAltura, z)); // índices 2 a segmentos+1
             }
 
-            // Vértices de la tapa inferior
             for (int i = 0; i < segmentos; i++)
             {
                 float angulo = 2 * (float)Math.PI * i / segmentos;
@@ -57,7 +48,6 @@ namespace Figuras3D
                 vertices.Add(new Point3D(x, -mitadAltura, z)); // índices segmentos+2 a 2*segmentos+1
             }
 
-            // Caras de la tapa superior (triángulos desde el centro)
             for (int i = 0; i < segmentos; i++)
             {
                 int actual = 2 + i;
@@ -65,7 +55,6 @@ namespace Figuras3D
                 caras.Add(new int[] { 0, actual, siguiente });
             }
 
-            // Caras de la tapa inferior (triángulos hacia el centro)
             for (int i = 0; i < segmentos; i++)
             {
                 int actual = 2 + segmentos + i;
@@ -73,7 +62,6 @@ namespace Figuras3D
                 caras.Add(new int[] { 1, siguiente, actual }); // Orden invertido para que mire hacia afuera
             }
 
-            // Caras laterales (rectángulos divididos en 2 triángulos)
             for (int i = 0; i < segmentos; i++)
             {
                 int superiorActual = 2 + i;
@@ -81,9 +69,7 @@ namespace Figuras3D
                 int inferiorActual = 2 + segmentos + i;
                 int inferiorSiguiente = 2 + segmentos + ((i + 1) % segmentos);
 
-                // Primer triángulo del rectángulo lateral
                 caras.Add(new int[] { superiorActual, inferiorActual, superiorSiguiente });
-                // Segundo triángulo del rectángulo lateral
                 caras.Add(new int[] { superiorSiguiente, inferiorActual, inferiorSiguiente });
             }
         }

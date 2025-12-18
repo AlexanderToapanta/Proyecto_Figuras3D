@@ -92,8 +92,9 @@ namespace Figuras3D.Formularios
         private void InicializarControles()
         {
             // Configurar ComboBox de Textura
-            comboTextura.SelectedIndex = 0; // Sólido por defecto
             comboTextura.SelectedIndexChanged += ComboBoxTextura_SelectedIndexChanged;
+            comboTextura.SelectedIndex = 8; // Sólido por defecto
+            
             
             // Configurar ComboBox de Material
             comboMaterial.SelectedIndex = 0; // Plástico por defecto
@@ -580,5 +581,10 @@ namespace Figuras3D.Formularios
         }
 
         #endregion
+
+        private void CilindroForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

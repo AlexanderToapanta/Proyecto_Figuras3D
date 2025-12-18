@@ -27,8 +27,6 @@ namespace Figuras3D.Formularios
         public CuboForm()
         {
             InitializeComponent();
-            
-            // Inicializar cubo con material por defecto
             cubo = new Cubo("Cubo Azul");
             cubo.ColorFigura = Color.Blue;
             cubo.Material = Material.CrearPlastico(Color.Blue);
@@ -92,8 +90,9 @@ namespace Figuras3D.Formularios
         private void InicializarControles()
         {
             // Configurar ComboBox de Textura
-            comboTextura.SelectedIndex = 0; // Sólido por defecto
             comboTextura.SelectedIndexChanged += ComboBoxTextura_SelectedIndexChanged;
+            comboTextura.SelectedIndex = 8; 
+            
             
             // Configurar ComboBox de Material
             comboMaterial.SelectedIndex = 0; // Plástico por defecto
@@ -429,7 +428,7 @@ namespace Figuras3D.Formularios
             numericEscalaZ.Value = 1;
             
             // Reiniciar ComboBoxes
-            comboTextura.SelectedIndex = 0; // Sólido
+            comboTextura.SelectedIndex = 8; // Sólido
             comboMaterial.SelectedIndex = 0; // Plástico
             comboAmbiente.SelectedIndex = 0; // "Seleccione..."
             

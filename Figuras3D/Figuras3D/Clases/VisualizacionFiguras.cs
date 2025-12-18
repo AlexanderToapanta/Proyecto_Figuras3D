@@ -4,14 +4,9 @@ using System.Windows.Forms;
 
 namespace Figuras3D.Clases
 {
-    /// <summary>
-    /// Clase auxiliar para gestionar la visualización de figuras 3D con botones flotantes de cámara y pausa
-    /// </summary>
+
     public static class VisualizacionFiguras
     {
-        /// <summary>
-        /// Crea un botón de cámara flotante y lo agrega al panel
-        /// </summary>
         public static Button CrearBotonCamara(Panel panel, EventHandler onClickMenu)
         {
             Button btnCamara = new Button
@@ -39,9 +34,6 @@ namespace Figuras3D.Clases
             return btnCamara;
         }
 
-        /// <summary>
-        /// Crea un botón de pausa flotante y lo agrega al panel
-        /// </summary>
         public static Button CrearBotonPausar(Panel panel, EventHandler onClick)
         {
             Button btnPausar = new Button
@@ -69,9 +61,6 @@ namespace Figuras3D.Clases
             return btnPausar;
         }
 
-        /// <summary>
-        /// Crea un menú contextual de cámaras
-        /// </summary>
         public static ContextMenuStrip CrearMenuCamara(EventHandler onItemClick)
         {
             ContextMenuStrip menuCamara = new ContextMenuStrip
@@ -118,9 +107,6 @@ namespace Figuras3D.Clases
             return menuCamara;
         }
 
-        /// <summary>
-        /// Ajusta el color del botón según el brillo del fondo
-        /// </summary>
         public static void AjustarColorBoton(Button boton, Color fondo)
         {
             if (boton == null) return;

@@ -3,16 +3,11 @@ using System.Drawing;
 
 namespace Figuras3D
 {
-    /// <summary>
-    /// CLASE CONO - Figura 3D básica
-    /// </summary>
+
     public class Cono : Figura3D
     {
         private int segmentos; // Número de lados del cono
 
-        /// <summary>
-        /// Constructor del cono
-        /// </summary>
         public Cono(string nombre = "Cono", int segmentos = 16) : base(nombre)
         {
             this.segmentos = Math.Max(3, segmentos); // Mínimo 3 lados
