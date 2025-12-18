@@ -1,0 +1,164 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Figuras3D.Clases
+{
+    public enum TipoTextura
+    {
+        Solido,           // Color sólido
+        Cuadricula,       // Patrón de cuadrícula
+        Rayas,            // Rayas horizontales
+        RayasVerticales,  // Rayas verticales
+        Puntos,           // Patrón de puntos
+        Degradado,        // Degradado de color
+        Marmol,           // Efecto mármol
+        Ladrillo,         // Patrón de ladrillos
+        Malla3D,          // Wireframe / Malla 3D
+        SoloMalla         // Solo Wireframe (sin relleno)
+    }
+    
+    public class Material
+    {
+        public Color ColorDifuso { get; set; } = Color.LightBlue;
+
+        public Color ColorEspecular { get; set; } = Color.White;
+
+        public Color ColorAmbiente { get; set; } = Color.FromArgb(50, 50, 50);
+
+        public float Brillo { get; set; } = 32.0f;
+
+        public float Opacidad { get; set; } = 1.0f;
+
+        public float FactorDifuso { get; set; } = 0.8f;
+
+        public float FactorEspecular { get; set; } = 0.5f;
+
+        public float FactorAmbiente { get; set; } = 0.2f;
+
+        public TipoTextura Textura { get; set; } = TipoTextura.Solido;
+
+
+        public Color ColorSecundario { get; set; } = Color.White;
+
+        public float EscalaTextura { get; set; } = 1.0f;
+
+
+        public Material()
+        {
+        }
+
+        public Material(Color colorDifuso)
+        {
+            ColorDifuso = colorDifuso;
+            ColorAmbiente = Color.FromArgb(
+                colorDifuso.R / 4,
+                colorDifuso.G / 4,
+                colorDifuso.B / 4
+            );
+        }
+
+
+        public static Material CrearPlastico(Color color)
+        {
+            return new Material(color)
+            {
+                // Plástico tiene brillo visible pero suave y difuso
+                Brillo = 40.0f,              // Brillo BAJO (reflejos grandes y suaves)
+                FactorEspecular = 0.4f,      // Reflejos MODERADOS
+                FactorDifuso = 1.0f,         // Color base MUY visible (MÁXIMO)
+                FactorAmbiente = 0.5f,       // Mucha luz ambiente (se ve bien iluminado)
+                ColorEspecular = Color.FromArgb(200, 200, 200), // Reflejos grisáceos suaves
+                ColorAmbiente = Color.FromArgb(
+                    Math.Min(255, color.R + 20),
+                    Math.Min(255, color.G + 20),
+                    Math.Min(255, color.B + 20)
+                )
+            };
+        }
+
+        public static Material CrearMetalico(Color color)
+        {
+            // Ajustar el color base para que sea más oscuro (típico del metal)
+            Color colorMetal = Color.FromArgb(
+                Math.Max(0, color.R - 50),
+                Math.Max(0, color.G - 50),
+                Math.Max(0, color.B - 50)
+            );
+
+            return new Material(colorMetal)
+            {
+                // Metal tiene brillos EXTREMOS y concentrados
+                Brillo = 128.0f,             // MÁXIMO brillo (reflejos pequeños y puntuales)
+                FactorEspecular = 1.0f,      // MÁXIMO especular (MUY reflectivo)
+                FactorDifuso = 0.2f,         // MUY poco difuso (casi todo es reflejo)
+                FactorAmbiente = 0.05f,      // Casi sin luz ambiente (oscuro sin reflejos)
+                ColorEspecular = Color.FromArgb(255, 255, 255), // Reflejos blancos brillantes PUROS
+                ColorAmbiente = Color.FromArgb(5, 5, 5) // Casi negro
+            };
+        }
+        
+        public static Material CrearVidrio(Color color)
+        {
+            // Color más claro y translúcido
+            Color colorVidrio = Color.FromArgb(
+                Math.Min(255, color.R + 60),
+                Math.Min(255, color.G + 60),
+                Math.Min(255, color.B + 60)
+            );
+
+            return new Material(colorVidrio)
+            {
+                Opacidad = 0.35f,            // MÁS transparente (65% transparente)
+                Brillo = 110.0f,             // Brillo muy alto pero no extremo
+                FactorEspecular = 0.9f,      // Alto especular (cristalino)
+                FactorDifuso = 0.4f,         // Poco difuso (se ve a través)
+                FactorAmbiente = 0.3f,       // Luz ambiente moderada
+                ColorEspecular = Color.FromArgb(230, 240, 255), // Reflejos azulados cristalinos
+                ColorAmbiente = Color.FromArgb(
+                    Math.Min(255, colorVidrio.R / 3 + 30),
+                    Math.Min(255, colorVidrio.G / 3 + 30),
+                    Math.Min(255, colorVidrio.B / 3 + 30)
+                )
+            };
+        }
+
+        public static Material CrearOro(Color colorBase)
+        {
+            return new Material(Color.FromArgb(255, 215, 0)) // Color oro puro brillante
+            {
+                Brillo = 95.0f,              // Brillo alto (reflejos medianos y cálidos)
+                FactorEspecular = 0.85f,     // Alto especular pero no máximo
+                FactorDifuso = 0.7f,         // Buen difuso (se ve el color dorado)
+                FactorAmbiente = 0.4f,       // Luz ambiente alta (oro brilla en todas partes)
+                ColorEspecular = Color.FromArgb(255, 240, 150), // Reflejos DORADOS cálidos
+                ColorAmbiente = Color.FromArgb(120, 100, 0) // Ambiente dorado medio
+            };
+        }
+
+        /// <summary>
+        /// Clona el material
+        /// </summary>
+        public Material Clonar()
+        {
+            return new Material()
+            {
+                ColorDifuso = this.ColorDifuso,
+                ColorEspecular = this.ColorEspecular,
+                ColorAmbiente = this.ColorAmbiente,
+                Brillo = this.Brillo,
+                Opacidad = this.Opacidad,
+                FactorDifuso = this.FactorDifuso,
+                FactorEspecular = this.FactorEspecular,
+                FactorAmbiente = this.FactorAmbiente,
+                Textura = this.Textura,
+                ColorSecundario = this.ColorSecundario,
+                EscalaTextura = this.EscalaTextura
+            };
+        }
+
+    }
+}

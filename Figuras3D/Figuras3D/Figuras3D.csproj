@@ -46,11 +46,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\VisualizacionFiguras.cs" />
+    <Compile Include="Clases\Camara.cs" />
     <Compile Include="Clases\Cilindro.cs" />
     <Compile Include="Clases\Cono.cs" />
     <Compile Include="Clases\Cubo.cs" />
     <Compile Include="Clases\Esfera.cs" />
     <Compile Include="Clases\Figuras3D.cs" />
+    <Compile Include="Clases\GestorTexturas.cs" />
+    <Compile Include="Clases\Iluminacion.cs" />
+    <Compile Include="Clases\Material.cs" />
+    <Compile Include="Clases\MotorRenderizado.cs" />
     <Compile Include="Clases\Piramide.cs" />
     <Compile Include="Formularios\CilindroForm.cs">
       <SubType>Form</SubType>

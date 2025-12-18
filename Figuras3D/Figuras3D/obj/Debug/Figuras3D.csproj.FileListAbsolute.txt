@@ -26,3 +26,20 @@ C:\Users\DELL\Documents\PROYECTO_2P_GRAFICA\Proyecto_Figuras3D\Figuras3D\Figuras
 C:\Users\DELL\Documents\PROYECTO_2P_GRAFICA\Proyecto_Figuras3D\Figuras3D\Figuras3D\obj\Debug\Figuras3D.Formularios.EsferaForm.resources
 C:\Users\DELL\Documents\PROYECTO_2P_GRAFICA\Proyecto_Figuras3D\Figuras3D\Figuras3D\obj\Debug\Figuras3D.Formularios.ConoForm.resources
 C:\Users\DELL\Documents\PROYECTO_2P_GRAFICA\Proyecto_Figuras3D\Figuras3D\Figuras3D\obj\Debug\Figuras3D.Formularios.PiramideForm.resources
+C:\Users\MEGAPC\OneDrive\Escritorio\GRAFICA\Proyect parcial2\Proyecto_Figuras3D\Figuras3D\Figuras3D\bin\Debug\Figuras3D.exe.config
+C:\Users\MEGAPC\OneDrive\Escritorio\GRAFICA\Proyect parcial2\Proyecto_Figuras3D\Figuras3D\Figuras3D\bin\Debug\Figuras3D.exe
+C:\Users\MEGAPC\OneDrive\Escritorio\GRAFICA\Proyect parcial2\Proyecto_Figuras3D\Figuras3D\Figuras3D\bin\Debug\Figuras3D.pdb
+C:\Users\MEGAPC\OneDrive\Escritorio\GRAFICA\Proyect parcial2\Proyecto_Figuras3D\Figuras3D\Figuras3D\obj\Debug\Figuras3D.csproj.AssemblyReference.cache
+C:\Users\MEGAPC\OneDrive\Escritorio\GRAFICA\Proyect parcial2\Proyecto_Figuras3D\Figuras3D\Figuras3D\obj\Debug\Figuras3D.exe.config
+C:\Users\MEGAPC\OneDrive\Escritorio\GRAFICA\Proyect parcial2\Proyecto_Figuras3D\Figuras3D\Figuras3D\obj\Debug\Figuras3D.Formularios.CilindroForm.resources
+C:\Users\MEGAPC\OneDrive\Escritorio\GRAFICA\Proyect parcial2\Proyecto_Figuras3D\Figuras3D\Figuras3D\obj\Debug\Figuras3D.Formularios.ConoForm.resources
+C:\Users\MEGAPC\OneDrive\Escritorio\GRAFICA\Proyect parcial2\Proyecto_Figuras3D\Figuras3D\Figuras3D\obj\Debug\Figuras3D.Formularios.CuboForm.resources
+C:\Users\MEGAPC\OneDrive\Escritorio\GRAFICA\Proyect parcial2\Proyecto_Figuras3D\Figuras3D\Figuras3D\obj\Debug\Figuras3D.Formularios.EsferaForm.resources
+C:\Users\MEGAPC\OneDrive\Escritorio\GRAFICA\Proyect parcial2\Proyecto_Figuras3D\Figuras3D\Figuras3D\obj\Debug\Figuras3D.Form1.resources
+C:\Users\MEGAPC\OneDrive\Escritorio\GRAFICA\Proyect parcial2\Proyecto_Figuras3D\Figuras3D\Figuras3D\obj\Debug\Figuras3D.Formularios.FormTestFiguras.resources
+C:\Users\MEGAPC\OneDrive\Escritorio\GRAFICA\Proyect parcial2\Proyecto_Figuras3D\Figuras3D\Figuras3D\obj\Debug\Figuras3D.Formularios.PiramideForm.resources
+C:\Users\MEGAPC\OneDrive\Escritorio\GRAFICA\Proyect parcial2\Proyecto_Figuras3D\Figuras3D\Figuras3D\obj\Debug\Figuras3D.Properties.Resources.resources
+C:\Users\MEGAPC\OneDrive\Escritorio\GRAFICA\Proyect parcial2\Proyecto_Figuras3D\Figuras3D\Figuras3D\obj\Debug\Figuras3D.csproj.GenerateResource.cache
+C:\Users\MEGAPC\OneDrive\Escritorio\GRAFICA\Proyect parcial2\Proyecto_Figuras3D\Figuras3D\Figuras3D\obj\Debug\Figuras3D.csproj.CoreCompileInputs.cache
+C:\Users\MEGAPC\OneDrive\Escritorio\GRAFICA\Proyect parcial2\Proyecto_Figuras3D\Figuras3D\Figuras3D\obj\Debug\Figuras3D.exe
+C:\Users\MEGAPC\OneDrive\Escritorio\GRAFICA\Proyect parcial2\Proyecto_Figuras3D\Figuras3D\Figuras3D\obj\Debug\Figuras3D.pdb

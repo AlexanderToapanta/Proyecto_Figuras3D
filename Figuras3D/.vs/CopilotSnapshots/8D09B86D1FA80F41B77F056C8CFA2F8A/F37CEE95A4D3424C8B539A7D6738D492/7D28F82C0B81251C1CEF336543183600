@@ -1,0 +1,789 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Figuras3D.Clases;
+
+namespace Figuras3D.Formularios
+{
+    public partial class CilindroForm : Form
+    {
+        private Cilindro cilindro;
+        private Point lastMousePos;
+        private bool isRotating = false;
+        private bool isMoving = false;
+        private MotorRenderizado motorRenderizado;
+        private Color colorOriginalFigura;
+        private Button btnCamara;
+        private Button btnPausar;
+        private ContextMenuStrip menuCamara;
+        private bool animacionPausada = false;
+
+        public CilindroForm()
+        {
+            InitializeComponent();
+            
+            // Inicializar cilindro con material por defecto
+            cilindro = new Cilindro("Cilindro Verde", 20);
+            cilindro.ColorFigura = Color.Green;
+            cilindro.Material = Material.CrearPlastico(Color.Green);
+            cilindro.Iluminacion = Iluminacion.CrearIluminacionEstudio();
+            
+            // GUARDAR color original
+            colorOriginalFigura = Color.Green;
+            
+            // Inicializar motor de renderizado
+            motorRenderizado = new MotorRenderizado();
+            
+            panelVisualizacion.DoubleBuffered(true);
+
+            // Eventos del mouse
+            panelVisualizacion.MouseDown += PanelVisualizacion_MouseDown;
+            panelVisualizacion.MouseMove += PanelVisualizacion_MouseMove;
+            panelVisualizacion.MouseUp += PanelVisualizacion_MouseUp;
+            panelVisualizacion.MouseWheel += PanelVisualizacion_MouseWheel;
+            
+            // Inicializar controles
+            InicializarControles();
+            
+            // Crear botones flotantes usando helper
+            CrearBotonesFlotantes();
+            
+            // Aplicar decoraciones visuales
+            AplicarDecoracionesVisuales();
+        }
+        
+        private void AplicarDecoracionesVisuales()
+        {
+            // Agregar líneas separadoras visuales dentro de groupBoxTransformacion
+            AgregarSeparador(groupBoxTransformacion, 104); // Entre Posición y Rotación
+            AgregarSeparador(groupBoxTransformacion, 186); // Entre Rotación y Escala
+            
+            // Aplicar efecto hover a los botones
+            AplicarEfectoHoverBoton(btnColor, Color.FromArgb(245, 245, 245), Color.White);
+            AplicarEfectoHoverBoton(btnReiniciar, Color.FromArgb(220, 220, 220), Color.FromArgb(230, 230, 230));
+        }
+        
+        private void AgregarSeparador(GroupBox grupo, int posicionY)
+        {
+            Panel separador = new Panel
+            {
+                Height = 1,
+                Width = grupo.Width - 30,
+                Left = 15,
+                Top = posicionY,
+                BackColor = Color.FromArgb(200, 200, 200),
+                Anchor = AnchorStyles.Left | AnchorStyles.Right
+            };
+            grupo.Controls.Add(separador);
+        }
+        
+        private void AplicarEfectoHoverBoton(Button boton, Color colorHover, Color colorNormal)
+        {
+            boton.MouseEnter += (s, e) => boton.BackColor = colorHover;
+            boton.MouseLeave += (s, e) => boton.BackColor = colorNormal;
+        }
+
+        private void InicializarControles()
+        {
+            // Configurar ComboBox de Textura
+            comboTextura.SelectedIndex = 0; // Sólido por defecto
+            comboTextura.SelectedIndexChanged += ComboBoxTextura_SelectedIndexChanged;
+            
+            // Configurar ComboBox de Material
+            comboMaterial.SelectedIndex = 0; // Plástico por defecto
+            comboMaterial.SelectedIndexChanged += ComboBoxMaterial_SelectedIndexChanged;
+            
+            // Configurar ComboBox de Ambiente (Hora del día) - solo cambia el fondo
+            // Agregar opción "Seleccione..." al inicio si no existe
+            if (comboAmbiente.Items.Count > 0 && comboAmbiente.Items[0].ToString() != "Seleccione...")
+            {
+                comboAmbiente.Items.Insert(0, "Seleccione...");
+            }
+            comboAmbiente.SelectedIndex = 0; // Mostrar "Seleccione..." por defecto
+            comboAmbiente.SelectedIndexChanged += ComboBoxAmbiente_SelectedIndexChanged;
+            
+            // Configurar TrackBar de Intensidad de Luz del FONDO
+            trackBarBrillo.Minimum = 30;  // Mínimo brillo del fondo
+            trackBarBrillo.Maximum = 100; // Máximo brillo del fondo
+            trackBarBrillo.Value = 70;    // Valor predeterminado
+            trackBarBrillo.Scroll += TrackBarBrilloFondo_Scroll;
+            label11.Text = $"Brillo Fondo: {trackBarBrillo.Value}%";
+        }
+
+        #region Eventos de Mouse para Interacción 3D
+
+        private void PanelVisualizacion_MouseDown(object sender, MouseEventArgs e)
+        {
+            lastMousePos = e.Location;
+            if (e.Button == MouseButtons.Left)
+            {
+                isRotating = true;
+                panelVisualizacion.Cursor = Cursors.Hand;
+            }
+            else if (e.Button == MouseButtons.Right)
+            {
+                isMoving = true;
+                panelVisualizacion.Cursor = Cursors.SizeAll;
+            }
+        }
+
+        private void PanelVisualizacion_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isRotating)
+            {
+                int deltaX = e.X - lastMousePos.X;
+                int deltaY = e.Y - lastMousePos.Y;
+                float nuevaRotY = cilindro.Rotacion.Y + deltaX * 0.5f;
+                float nuevaRotX = cilindro.Rotacion.X + deltaY * 0.5f;
+                cilindro.Rotacion = new Point3D(nuevaRotX, nuevaRotY, cilindro.Rotacion.Z);
+                numericRotacionX.Value = (decimal)(nuevaRotX % 360);
+                numericRotacionY.Value = (decimal)(nuevaRotY % 360);
+                panelVisualizacion.Invalidate();
+                lastMousePos = e.Location;
+            }
+            else if (isMoving)
+            {
+                int deltaX = e.X - lastMousePos.X;
+                int deltaY = e.Y - lastMousePos.Y;
+                float escalaMovimiento = 0.01f;
+                float nuevaPosX = cilindro.Posicion.X + deltaX * escalaMovimiento;
+                float nuevaPosY = cilindro.Posicion.Y - deltaY * escalaMovimiento;
+                cilindro.Posicion = new Point3D(nuevaPosX, nuevaPosY, cilindro.Posicion.Z);
+                numericPosX.Value = (decimal)nuevaPosX;
+                numericPosY.Value = (decimal)nuevaPosY;
+                panelVisualizacion.Invalidate();
+                lastMousePos = e.Location;
+            }
+        }
+
+        private void PanelVisualizacion_MouseUp(object sender, MouseEventArgs e)
+        {
+            isRotating = false;
+            isMoving = false;
+            panelVisualizacion.Cursor = Cursors.Default;
+        }
+
+        private void PanelVisualizacion_MouseWheel(object sender, MouseEventArgs e)
+        {
+            float cambioEscala = e.Delta > 0 ? 0.1f : -0.1f;
+            float nuevaEscalaX = Math.Max(0.1f, cilindro.Escala.X + cambioEscala);
+            float nuevaEscalaY = Math.Max(0.1f, cilindro.Escala.Y + cambioEscala);
+            float nuevaEscalaZ = Math.Max(0.1f, cilindro.Escala.Z + cambioEscala);
+            cilindro.Escala = new Point3D(nuevaEscalaX, nuevaEscalaY, nuevaEscalaZ);
+            numericEscalaX.Value = (decimal)nuevaEscalaX;
+            numericEscalaY.Value = (decimal)nuevaEscalaY;
+            numericEscalaZ.Value = (decimal)nuevaEscalaZ;
+            panelVisualizacion.Invalidate();
+        }
+
+        #endregion
+
+        #region Renderizado con Motor Avanzado
+
+        private void panelVisualizacion_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            g.Clear(panelVisualizacion.BackColor);
+            
+            // Usar motor de renderizado avanzado
+            motorRenderizado.RenderizarFigura(g, cilindro, panelVisualizacion.Width, panelVisualizacion.Height);
+            
+            // Dibujar instrucciones
+            using (Font font = new Font("Segoe UI", 9, FontStyle.Bold))
+            using (Brush textBrush = new SolidBrush(Color.White))
+            using (Brush bgBrush = new SolidBrush(Color.FromArgb(150, 0, 0, 0)))
+            {
+                string instrucciones = "Click Izq: Rotar | Click Der: Mover | Rueda: Zoom";
+                SizeF size = g.MeasureString(instrucciones, font);
+                g.FillRectangle(bgBrush, 5, 5, size.Width + 10, size.Height + 10);
+                g.DrawString(instrucciones, font, textBrush, 10, 10);
+            }
+        }
+
+        #endregion
+
+        #region Eventos de Controles de Transformación
+
+        private void numericPos_ValueChanged(object sender, EventArgs e)
+        {
+            cilindro.Posicion = new Point3D(
+                (float)numericPosX.Value,
+                (float)numericPosY.Value,
+                (float)numericPosZ.Value
+            );
+            panelVisualizacion.Invalidate();
+        }
+
+        private void numericRotacion_ValueChanged(object sender, EventArgs e)
+        {
+            cilindro.Rotacion = new Point3D(
+                (float)numericRotacionX.Value,
+                (float)numericRotacionY.Value,
+                (float)numericRotacionZ.Value
+            );
+            panelVisualizacion.Invalidate();
+        }
+
+        private void numericEscala_ValueChanged(object sender, EventArgs e)
+        {
+            cilindro.Escala = new Point3D(
+                (float)numericEscalaX.Value,
+                (float)numericEscalaY.Value,
+                (float)numericEscalaZ.Value
+            );
+            panelVisualizacion.Invalidate();
+        }
+
+        private void ComboBoxTextura_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TipoTextura tipoTextura = (TipoTextura)comboTextura.SelectedIndex;
+            cilindro.Material.Textura = tipoTextura;
+            panelVisualizacion.Invalidate();
+        }
+
+        private void ComboBoxMaterial_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // GUARDAR la textura actual y propiedades antes de cambiar material
+            TipoTextura texturaActual = cilindro.Material.Textura;
+            Color colorSecundario = cilindro.Material.ColorSecundario;
+            float escalaTextura = cilindro.Material.EscalaTextura;
+            
+            // Aplicar material predefinido según selección
+            switch (comboMaterial.SelectedIndex)
+            {
+                case 0: // Plástico
+                    cilindro.Material = Material.CrearPlastico(colorOriginalFigura);
+                    cilindro.Material.ColorDifuso = colorOriginalFigura;
+                    break;
+                case 1: // Metálico
+                    cilindro.Material = Material.CrearMetalico(colorOriginalFigura);
+                    cilindro.Material.ColorDifuso = colorOriginalFigura;
+                    break;
+                case 2: // Vidrio
+                    cilindro.Material = Material.CrearVidrio(colorOriginalFigura);
+                    cilindro.Material.ColorDifuso = colorOriginalFigura;
+                    break;
+                case 3: // Oro
+                    cilindro.Material = Material.CrearOro(colorOriginalFigura);
+                    // El oro usa su propio color dorado, NO restauramos el original
+                    break;
+            }
+            
+            // RESTAURAR la textura y propiedades que tenía antes
+            cilindro.Material.Textura = texturaActual;
+            cilindro.Material.ColorSecundario = colorSecundario;
+            cilindro.Material.EscalaTextura = escalaTextura;
+            
+            panelVisualizacion.Invalidate();
+        }
+
+        private void ComboBoxAmbiente_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Si está en "Seleccione...", no hacer nada (mantener fondo predeterminado)
+            if (comboAmbiente.SelectedIndex == 0)
+            {
+                // Mantener el fondo inicial (azul cielo día)
+                panelVisualizacion.BackColor = Color.FromArgb(135, 206, 250);
+                AplicarBrilloAlFondo();
+                panelVisualizacion.Invalidate();
+                return;
+            }
+            
+            // Cambiar SOLO el color de fondo del panel según la hora del día
+            // Restar 1 al índice porque ahora "Seleccione..." ocupa el índice 0
+            switch (comboAmbiente.SelectedIndex - 1)
+            {
+                case 0: // Día - Fondo azul cielo brillante
+                    panelVisualizacion.BackColor = Color.FromArgb(135, 206, 250);
+                    break;
+
+                case 1: // Tarde - Fondo beige cálido
+                    panelVisualizacion.BackColor = Color.FromArgb(255, 235, 205);
+                    break;
+
+                case 2: // Noche - Fondo azul oscuro nocturno
+                    panelVisualizacion.BackColor = Color.FromArgb(25, 25, 112);
+                    break;
+
+                case 3: // Amanecer - Amarillo suave difuminado
+                    panelVisualizacion.BackColor = Color.FromArgb(255, 250, 205); // Amarillo muy suave (LemonChiffon)
+                    break;
+
+                case 4: // Atardecer - Naranja-amarillo cálido difuminado
+                    panelVisualizacion.BackColor = Color.FromArgb(255, 200, 124); // Naranja-amarillo suave
+                    break;
+            }
+            
+            // Aplicar el brillo actual del trackBar al nuevo color
+            AplicarBrilloAlFondo();
+            AjustarColorBotonCamara(); // Ajustar color del botón según el nuevo fondo
+            panelVisualizacion.Invalidate();
+        }
+
+        private void TrackBarBrilloFondo_Scroll(object sender, EventArgs e)
+        {
+            // Ajustar el brillo del color de fondo
+            label11.Text = $"Brillo Fondo: {trackBarBrillo.Value}%";
+            AplicarBrilloAlFondo();
+            panelVisualizacion.Invalidate();
+        }
+
+        private void AplicarBrilloAlFondo()
+        {
+            // Obtener el color base del fondo actual
+            Color colorBase = ObtenerColorBaseAmbiente();
+            
+            // Calcular el factor de brillo (0.3 a 1.0)
+            float factorBrillo = trackBarBrillo.Value / 100f;
+            
+            // Aplicar el factor de brillo al color
+            int r = (int)(colorBase.R * factorBrillo);
+            int g = (int)(colorBase.G * factorBrillo);
+            int b = (int)(colorBase.B * factorBrillo);
+            
+            // Asegurar que los valores estén en rango válido
+            r = Math.Max(0, Math.Min(255, r));
+            g = Math.Max(0, Math.Min(255, g));
+            b = Math.Max(0, Math.Min(255, b));
+            
+            panelVisualizacion.BackColor = Color.FromArgb(r, g, b);
+            
+            // Ajustar color del botón de cámara según el nuevo fondo
+            if (btnCamara != null)
+            {
+                AjustarColorBotonCamara();
+            }
+        }
+
+        private Color ObtenerColorBaseAmbiente()
+        {
+            // Devolver el color base según el ambiente seleccionado
+            // Si está en "Seleccione..." (índice 0), devolver color de Día por defecto
+            if (comboAmbiente.SelectedIndex == 0)
+            {
+                return Color.FromArgb(135, 206, 250); // Día por defecto
+            }
+            
+            // Restar 1 al índice porque "Seleccione..." ocupa el índice 0
+            switch (comboAmbiente.SelectedIndex - 1)
+            {
+                case 0: return Color.FromArgb(135, 206, 250); // Día - Azul cielo
+                case 1: return Color.FromArgb(255, 235, 205); // Tarde - Beige cálido
+                case 2: return Color.FromArgb(25, 25, 112);   // Noche - Azul oscuro
+                case 3: return Color.FromArgb(255, 250, 205); // Amanecer - Amarillo suave difuminado
+                case 4: return Color.FromArgb(255, 200, 124); // Atardecer - Naranja-amarillo difuminado
+                default: return Color.FromArgb(135, 206, 250); // Por defecto Día
+            }
+        }
+
+        #endregion
+
+        #region Eventos de Botones
+
+        private void btnColor_Click(object sender, EventArgs e)
+        {
+            colorDialog1.Color = cilindro.Material.ColorDifuso;
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+            {
+                // GUARDAR el nuevo color como original
+                colorOriginalFigura = colorDialog1.Color;
+                
+                cilindro.ColorFigura = colorDialog1.Color;
+                cilindro.Material.ColorDifuso = colorDialog1.Color;
+                panelVisualizacion.Invalidate();
+            }
+        }
+
+        private void btnReiniciar_Click(object sender, EventArgs e)
+        {
+            // Reiniciar transformaciones
+            cilindro.Posicion = new Point3D(0, 0, 0);
+            cilindro.Rotacion = new Point3D(0, 0, 0);
+            cilindro.Escala = new Point3D(1, 1, 1);
+            
+            // Reiniciar color y material DE LA FIGURA
+            colorOriginalFigura = Color.Green;
+            cilindro.ColorFigura = Color.Green;
+            cilindro.Material = Material.CrearPlastico(Color.Green);
+            
+            // Actualizar controles numéricos
+            numericPosX.Value = 0;
+            numericPosY.Value = 0;
+            numericPosZ.Value = 0;
+            numericRotacionX.Value = 0;
+            numericRotacionY.Value = 0;
+            numericRotacionZ.Value = 0;
+            numericEscalaX.Value = 1;
+            numericEscalaY.Value = 1;
+            numericEscalaZ.Value = 1;
+            
+            // Reiniciar ComboBoxes
+            comboTextura.SelectedIndex = 0; // Sólido
+            comboMaterial.SelectedIndex = 0; // Plástico
+            comboAmbiente.SelectedIndex = 0; // "Seleccione..."
+            
+            // Reiniciar brillo del fondo
+            trackBarBrillo.Value = 70;
+            label11.Text = $"Brillo Fondo: {trackBarBrillo.Value}%";
+            
+            // Restablecer color de fondo a Día por defecto
+            panelVisualizacion.BackColor = Color.FromArgb(135, 206, 250);
+            AplicarBrilloAlFondo();
+            
+            panelVisualizacion.Invalidate();
+        }
+
+        #endregion
+
+        #region Timer de Animación
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            // No animar si está pausado o si el usuario está interactuando
+            if (animacionPausada || isRotating || isMoving)
+            {
+                return;
+            }
+            
+            cilindro.Rotacion = new Point3D(
+                cilindro.Rotacion.X + 0.4f,
+                cilindro.Rotacion.Y + 0.6f,
+                cilindro.Rotacion.Z
+            );
+            
+            numericRotacionX.Value = (decimal)(cilindro.Rotacion.X % 360);
+            numericRotacionY.Value = (decimal)(cilindro.Rotacion.Y % 360);
+            
+            panelVisualizacion.Invalidate();
+        }
+
+        #endregion
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+        
+        #region Botón de Cámara Flotante
+
+        private void CrearBotonesFlotantes()
+        {
+            // Crear el botón de cámara
+            btnCamara = new Button
+            {
+                Size = new Size(45, 45),
+                BackColor = Color.FromArgb(200, 60, 60, 60),
+                ForeColor = Color.White,
+                FlatStyle = FlatStyle.Flat,
+                Font = new Font("Segoe UI", 16F, FontStyle.Bold),
+                Text = "📷",
+                Cursor = Cursors.Hand,
+                Tag = "CameraButton"
+            };
+            
+            // Estilo del botón
+            btnCamara.FlatAppearance.BorderSize = 0;
+            btnCamara.FlatAppearance.MouseOverBackColor = Color.FromArgb(220, 80, 80, 80);
+            btnCamara.FlatAppearance.MouseDownBackColor = Color.FromArgb(240, 100, 100, 100);
+            
+            // Posicionar el botón en la esquina superior derecha del panel
+            btnCamara.Location = new Point(
+                panelVisualizacion.Width - btnCamara.Width - 10,
+                10
+            );
+            
+            // Agregar el botón al panel
+            panelVisualizacion.Controls.Add(btnCamara);
+            btnCamara.BringToFront();
+            
+            // Crear menú contextual de cámaras
+            CrearMenuCamara();
+            
+            // Evento click para mostrar el menú
+            btnCamara.Click += BtnCamara_Click;
+            
+            // Ajustar posición cuando el panel cambie de tamaño
+            panelVisualizacion.Resize += (s, e) =>
+            {
+                btnCamara.Location = new Point(
+                    panelVisualizacion.Width - btnCamara.Width - 10,
+                    10
+                );
+                
+                // Reposicionar botón pausar también
+                if (btnPausar != null)
+                {
+                    btnPausar.Location = new Point(
+                        panelVisualizacion.Width - btnPausar.Width - 65,
+                        10
+                    );
+                }
+            };
+            
+            // Ajustar color del botón según el fondo
+            AjustarColorBotonCamara();
+            
+            // Crear el botón de pausa/play
+            btnPausar = new Button
+            {
+                Size = new Size(45, 45),
+                BackColor = Color.FromArgb(200, 60, 60, 60),
+                ForeColor = Color.White,
+                FlatStyle = FlatStyle.Flat,
+                Font = new Font("Segoe UI", 16F, FontStyle.Bold),
+                Text = "⏸",  // Símbolo de pausa
+                Cursor = Cursors.Hand,
+                Tag = "PauseButton"
+            };
+            
+            // Estilo del botón
+            btnPausar.FlatAppearance.BorderSize = 0;
+            btnPausar.FlatAppearance.MouseOverBackColor = Color.FromArgb(220, 80, 80, 80);
+            btnPausar.FlatAppearance.MouseDownBackColor = Color.FromArgb(240, 100, 100, 100);
+            
+            // Posicionar el botón a la izquierda del botón de cámara
+            btnPausar.Location = new Point(
+                panelVisualizacion.Width - btnPausar.Width - 65,
+                10
+            );
+            
+            // Agregar el botón al panel
+            panelVisualizacion.Controls.Add(btnPausar);
+            btnPausar.BringToFront();
+            
+            // Evento click para pausar/reanudar animación
+            btnPausar.Click += BtnPausar_Click;
+            
+            // Ajustar color del botón según el fondo
+            AjustarColorBotonPausar();
+        }
+
+        private void BtnPausar_Click(object sender, EventArgs e)
+        {
+            animacionPausada = !animacionPausada;
+            
+            // Cambiar el ícono según el estado
+            if (animacionPausada)
+            {
+                btnPausar.Text = "▶";  // Símbolo de play
+            }
+            else
+            {
+                btnPausar.Text = "⏸";  // Símbolo de pausa
+            }
+        }
+
+        private void BtnCamara_Click(object sender, EventArgs e)
+        {
+            // Mostrar el menú debajo del botón
+            menuCamara.Show(btnCamara, new Point(0, btnCamara.Height));
+        }
+
+        private void ItemCamara_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem item = sender as ToolStripMenuItem;
+            if (item == null) return;
+            
+            TipoCamara tipoCamara = (TipoCamara)item.Tag;
+            CambiarCamara(tipoCamara);
+        }
+
+        private void CambiarCamara(TipoCamara tipo)
+        {
+            // Crear la cámara según el tipo seleccionado
+            switch (tipo)
+            {
+                case TipoCamara.Libre:
+                    motorRenderizado.CamaraActiva = Camara.CrearCamaraLibre();
+                    break;
+                case TipoCamara.Frontal:
+                    motorRenderizado.CamaraActiva = Camara.CrearCamaraFrontal();
+                    // Ajustar la rotación de la figura para vista frontal
+                    cilindro.Rotacion = new Point3D(0, 0, 0);
+                    break;
+                case TipoCamara.Trasera:
+                    motorRenderizado.CamaraActiva = Camara.CrearCamaraTrasera();
+                    cilindro.Rotacion = new Point3D(0, 180, 0);
+                    break;
+                case TipoCamara.Superior:
+                    motorRenderizado.CamaraActiva = Camara.CrearCamaraSuperior();
+                    cilindro.Rotacion = new Point3D(90, 0, 0);
+                    break;
+                case TipoCamara.Inferior:
+                    motorRenderizado.CamaraActiva = Camara.CrearCamaraInferior();
+                    cilindro.Rotacion = new Point3D(-90, 0, 0);
+                    break;
+                case TipoCamara.Lateral:
+                    motorRenderizado.CamaraActiva = Camara.CrearCamaraLateral();
+                    cilindro.Rotacion = new Point3D(0, 90, 0);
+                    break;
+                case TipoCamara.LateralIzq:
+                    motorRenderizado.CamaraActiva = Camara.CrearCamaraLateralIzquierda();
+                    cilindro.Rotacion = new Point3D(0, -90, 0);
+                    break;
+                case TipoCamara.Isometrica:
+                    motorRenderizado.CamaraActiva = Camara.CrearCamaraIsometrica();
+                    cilindro.Rotacion = new Point3D(35.264f, 45, 0);
+                    break;
+                case TipoCamara.Perspectiva:
+                    motorRenderizado.CamaraActiva = Camara.CrearCamaraPerspectiva();
+                    cilindro.Rotacion = new Point3D(20, 45, 0);
+                    break;
+            }
+            
+            // Actualizar controles numéricos
+            numericRotacionX.Value = (decimal)(cilindro.Rotacion.X % 360);
+            numericRotacionY.Value = (decimal)(cilindro.Rotacion.Y % 360);
+            numericRotacionZ.Value = (decimal)(cilindro.Rotacion.Z % 360);
+            
+            panelVisualizacion.Invalidate();
+        }
+
+        private void CrearMenuCamara()
+        {
+            menuCamara = new ContextMenuStrip
+            {
+                BackColor = Color.FromArgb(250, 250, 250),
+                Font = new Font("Segoe UI", 9.5F),
+                ShowImageMargin = false,
+                RenderMode = ToolStripRenderMode.Professional
+            };
+            
+            // Personalizar colores del menú
+            menuCamara.Renderer = new ToolStripProfessionalRenderer(new CustomColorTable());
+            
+            // Agregar opciones de cámara sin íconos
+            string[] opciones = {
+                "Libre",
+                "Frontal",
+                "Trasera",
+                "Superior",
+                "Inferior",
+                "Lateral Derecha",
+                "Lateral Izquierda",
+                "Isométrica",
+                "Perspectiva"
+            };
+            
+            for (int i = 0; i < opciones.Length; i++)
+            {
+                ToolStripMenuItem item = new ToolStripMenuItem(opciones[i])
+                {
+                    Tag = (TipoCamara)i,
+                    Font = new Font("Segoe UI", 9.5F),
+                    ForeColor = Color.FromArgb(50, 50, 50),
+                    Padding = new Padding(8, 4, 8, 4)
+                };
+                
+                item.Click += ItemCamara_Click;
+                menuCamara.Items.Add(item);
+                
+                // Agregar separador después de "Libre"
+                if (i == 0)
+                {
+                    menuCamara.Items.Add(new ToolStripSeparator());
+                }
+                
+                // Agregar separador después de "Inferior" para agrupar vistas laterales
+                if (i == 4)
+                {
+                    menuCamara.Items.Add(new ToolStripSeparator());
+                }
+                
+                // Agregar separador antes de las vistas especiales
+                if (i == 6)
+                {
+                    menuCamara.Items.Add(new ToolStripSeparator());
+                }
+            }
+        }
+        
+        // Clase personalizada para los colores del menú
+        private class CustomColorTable : ProfessionalColorTable
+        {
+            public override Color MenuItemSelected
+            {
+                get { return Color.FromArgb(230, 240, 250); }
+            }
+
+            public override Color MenuItemSelectedGradientBegin
+            {
+                get { return Color.FromArgb(230, 240, 250); }
+            }
+
+            public override Color MenuItemSelectedGradientEnd
+            {
+                get { return Color.FromArgb(220, 235, 250); }
+            }
+
+            public override Color MenuItemBorder
+            {
+                get { return Color.FromArgb(180, 200, 220); }
+            }
+
+            public override Color MenuBorder
+            {
+                get { return Color.FromArgb(160, 160, 160); }
+            }
+        }
+
+        private void AjustarColorBotonCamara()
+        {
+            if (btnCamara == null) return;
+            
+            // Calcular el brillo del fondo para determinar si usar botón claro u oscuro
+            Color fondo = panelVisualizacion.BackColor;
+            int brillo = (int)((fondo.R * 0.299) + (fondo.G * 0.587) + (fondo.B * 0.114));
+            
+            if (brillo > 128)
+            {
+                // Fondo claro - usar botón oscuro
+                btnCamara.BackColor = Color.FromArgb(200, 40, 40, 40);
+                btnCamara.ForeColor = Color.White;
+                btnCamara.FlatAppearance.MouseOverBackColor = Color.FromArgb(220, 60, 60, 60);
+            }
+            else
+            {
+                // Fondo oscuro - usar botón claro
+                btnCamara.BackColor = Color.FromArgb(200, 220, 220, 220);
+                btnCamara.ForeColor = Color.FromArgb(40, 40, 40);
+                btnCamara.FlatAppearance.MouseOverBackColor = Color.FromArgb(220, 240, 240, 240);
+            }
+            
+            // Actualizar también el botón de pausa
+            AjustarColorBotonPausar();
+        }
+
+        private void AjustarColorBotonPausar()
+        {
+            if (btnPausar == null) return;
+            
+            // Calcular el brillo del fondo
+            Color fondo = panelVisualizacion.BackColor;
+            int brillo = (int)((fondo.R * 0.299) + (fondo.G * 0.587) + (fondo.B * 0.114));
+            
+            if (brillo > 128)
+            {
+                // Fondo claro - usar botón oscuro
+                btnPausar.BackColor = Color.FromArgb(200, 40, 40, 40);
+                btnPausar.ForeColor = Color.White;
+                btnPausar.FlatAppearance.MouseOverBackColor = Color.FromArgb(220, 60, 60, 60);
+            }
+            else
+            {
+                // Fondo oscuro - usar botón claro
+                btnPausar.BackColor = Color.FromArgb(200, 220, 220, 220);
+                btnPausar.ForeColor = Color.FromArgb(40, 40, 40);
+                btnPausar.FlatAppearance.MouseOverBackColor = Color.FromArgb(220, 240, 240, 240);
+            }
+        }
+
+        #endregion
+    }
+}

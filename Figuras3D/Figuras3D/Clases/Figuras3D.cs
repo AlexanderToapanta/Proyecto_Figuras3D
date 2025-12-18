@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Collections.Generic;
+using Figuras3D.Clases;
 
 namespace Figuras3D
 {
@@ -24,6 +25,10 @@ namespace Figuras3D
         public Color ColorFigura { get; set; } = Color.LightBlue;
         public bool EstaSeleccionada { get; set; } = false;
 
+        // Propiedades de renderizado avanzado
+        public Material Material { get; set; }
+        public Iluminacion Iluminacion { get; set; }
+
         // Datos internos de la figura (la interfaz NO necesita tocarlos)
         protected List<Point3D> vertices = new List<Point3D>();
         protected List<int[]> caras = new List<int[]>();
@@ -34,6 +39,11 @@ namespace Figuras3D
         public Figura3D(string nombre = "Figura")
         {
             this.Nombre = nombre;
+            
+            // Inicializar material e iluminación por defecto
+            Material = new Material(Color.LightBlue);
+            Iluminacion = Iluminacion.CrearIluminacionEstudio();
+            
             // Cada figura hija generará su propia geometría
             GenerarGeometria();
         }

@@ -1,0 +1,187 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Figuras3D.Clases;
+
+namespace Figuras3D.Formularios
+{
+    public partial class CilindroForm : Form
+    {
+        private Cilindro cilindro;
+        private Point lastMousePos;
+        private bool isRotating = false;
+        private bool isMoving = false;
+        private MotorRenderizado motorRenderizado;
+        private Color colorOriginalFigura; // ← NUEVO: Guardar color original
+
+        public CilindroForm()
+        {
+            InitializeComponent();
+            
+            // Inicializar cilindro con material por defecto
+            cilindro = new Cilindro("Cilindro Verde", 20);
+            cilindro.ColorFigura = Color.Green;
+            cilindro.Material = Material.CrearPlastico(Color.Green);
+            cilindro.Iluminacion = Iluminacion.CrearIluminacionEstudio();
+            
+            // GUARDAR color original
+            colorOriginalFigura = Color.Green;
+            
+            // Inicializar motor de renderizado
+            motorRenderizado = new MotorRenderizado();
+            
+            panelVisualizacion.DoubleBuffered(true);
+
+            // Eventos del mouse
+            panelVisualizacion.MouseDown += PanelVisualizacion_MouseDown;
+            panelVisualizacion.MouseMove += PanelVisualizacion_MouseMove;
+            panelVisualizacion.MouseUp += PanelVisualizacion_MouseUp;
+            panelVisualizacion.MouseWheel += PanelVisualizacion_MouseWheel;
+            
+            // Inicializar controles
+            InicializarControles();
+        }
+
+        private void InicializarControles()
+        {
+            // Configurar ComboBox de Textura
+            comboTextura.SelectedIndex = 0; // Sólido por defecto
+            comboTextura.SelectedIndexChanged += ComboBoxTextura_SelectedIndexChanged;
+            
+            // Configurar ComboBox de Material
+            comboMaterial.SelectedIndex = 0; // Plástico por defecto
+            comboMaterial.SelectedIndexChanged += ComboBoxMaterial_SelectedIndexChanged;
+            
+            // Configurar ComboBox de Ambiente (Hora del día) - solo cambia el fondo
+            comboAmbiente.SelectedIndex = 0; // Día por defecto
+            comboAmbiente.SelectedIndexChanged += ComboBoxAmbiente_SelectedIndexChanged;
+        }
+
+        #region Eventos de Mouse para Interacción 3D
+
+        private void PanelVisualizacion_MouseDown(object sender, MouseEventArgs e)
+        {
+            lastMousePos = e.Location;
+            if (e.Button == MouseButtons.Left)
+            {
+                isRotating = true;
+                panelVisualizacion.Cursor = Cursors.Hand;
+            }
+            else if (e.Button == MouseButtons.Right)
+            {
+                isMoving = true;
+                panelVisualizacion.Cursor = Cursors.SizeAll;
+            }
+        }
+
+        private void PanelVisualizacion_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isRotating)
+            {
+                int deltaX = e.X - lastMousePos.X;
+                int deltaY = e.Y - lastMousePos.Y;
+                float nuevaRotY = cilindro.Rotacion.Y + deltaX * 0.5f;
+                float nuevaRotX = cilindro.Rotacion.X + deltaY * 0.5f;
+                cilindro.Rotacion = new Point3D(nuevaRotX, nuevaRotY, cilindro.Rotacion.Z);
+                numericRotacionX.Value = (decimal)(nuevaRotX % 360);
+                numericRotacionY.Value = (decimal)(nuevaRotY % 360);
+                panelVisualizacion.Invalidate();
+                lastMousePos = e.Location;
+            }
+            else if (isMoving)
+            {
+                int deltaX = e.X - lastMousePos.X;
+                int deltaY = e.Y - lastMousePos.Y;
+                float escalaMovimiento = 0.01f;
+                float nuevaPosX = cilindro.Posicion.X + deltaX * escalaMovimiento;
+                float nuevaPosY = cilindro.Posicion.Y - deltaY * escalaMovimiento;
+                cilindro.Posicion = new Point3D(nuevaPosX, nuevaPosY, cilindro.Posicion.Z);
+                numericPosX.Value = (decimal)nuevaPosX;
+                numericPosY.Value = (decimal)nuevaPosY;
+                panelVisualizacion.Invalidate();
+                lastMousePos = e.Location;
+            }
+        }
+
+        private void PanelVisualizacion_MouseUp(object sender, MouseEventArgs e)
+        {
+            isRotating = false;
+            isMoving = false;
+            panelVisualizacion.Cursor = Cursors.Default;
+        }
+
+        private void PanelVisualizacion_MouseWheel(object sender, MouseEventArgs e)
+        {
+            float cambioEscala = e.Delta > 0 ? 0.1f : -0.1f;
+            float nuevaEscalaX = Math.Max(0.1f, cilindro.Escala.X + cambioEscala);
+            float nuevaEscalaY = Math.Max(0.1f, cilindro.Escala.Y + cambioEscala);
+            float nuevaEscalaZ = Math.Max(0.1f, cilindro.Escala.Z + cambioEscala);
+            cilindro.Escala = new Point3D(nuevaEscalaX, nuevaEscalaY, nuevaEscalaZ);
+            numericEscalaX.Value = (decimal)nuevaEscalaX;
+            numericEscalaY.Value = (decimal)nuevaEscalaY;
+            numericEscalaZ.Value = (decimal)nuevaEscalaZ;
+            panelVisualizacion.Invalidate();
+        }
+
+        #endregion
+
+        #region Renderizado con Motor Avanzado
+
+        private void panelVisualizacion_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            g.Clear(panelVisualizacion.BackColor);
+            
+            // Usar motor de renderizado avanzado
+            motorRenderizado.RenderizarFigura(g, cilindro, panelVisualizacion.Width, panelVisualizacion.Height);
+            
+            // Dibujar instrucciones
+            using (Font font = new Font("Segoe UI", 9, FontStyle.Bold))
+            using (Brush textBrush = new SolidBrush(Color.White))
+            using (Brush bgBrush = new SolidBrush(Color.FromArgb(150, 0, 0, 0)))
+            {
+                string instrucciones = "Click Izq: Rotar | Click Der: Mover | Rueda: Zoom";
+                SizeF size = g.MeasureString(instrucciones, font);
+                g.FillRectangle(bgBrush, 5, 5, size.Width + 10, size.Height + 10);
+                g.DrawString(instrucciones, font, textBrush, 10, 10);
+            }
+        }
+
+        #endregion
+
+        #region Eventos de Controles de Transformación
+
+        private void numericPos_ValueChanged(object sender, EventArgs e)
+        {
+            cilindro.Posicion = new Point3D(
+                (float)numericPosX.Value,
+                (float)numericPosY.Value,
+                (float)numericPosZ.Value
+            );
+            panelVisualizacion.Invalidate();
+        }
+
+        private void numericRotacion_ValueChanged(object sender, EventArgs e)
+        {
+            cilindro.Rotacion = new Point3D(
+                (float)numericRotacionX.Value,
+                (float)numericRotacionY.Value,
+                (float)numericRotacionZ.Value
+            );
+            panelVisualizacion.Invalidate();
+        }
+
+        private void numericEscala_ValueChanged(object sender, EventArgs e)
+        {
+            cilindro.Escala = new Point3D(
+                (float)numericEscalaX.Value,
+                (float)numericEscalaY.Value,
+                (float)numericEscalaZ.Value
+            );
+            panelVisualizacion.Invalid

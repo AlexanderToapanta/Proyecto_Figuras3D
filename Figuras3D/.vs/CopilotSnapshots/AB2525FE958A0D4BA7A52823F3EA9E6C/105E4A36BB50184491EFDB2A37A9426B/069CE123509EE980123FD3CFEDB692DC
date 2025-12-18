@@ -1,0 +1,414 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Figuras3D.Clases;
+
+namespace Figuras3D.Formularios
+{
+    public partial class CilindroForm : Form
+    {
+        private Cilindro cilindro;
+        private Point lastMousePos;
+        private bool isRotating = false;
+        private bool isMoving = false;
+        private MotorRenderizado motorRenderizado;
+
+        public CilindroForm()
+        {
+            InitializeComponent();
+            
+            // Inicializar cilindro con material por defecto
+            cilindro = new Cilindro("Cilindro Verde", 20);
+            cilindro.ColorFigura = Color.Green;
+            cilindro.Material = Material.CrearPlastico(Color.Green);
+            cilindro.Iluminacion = Iluminacion.CrearIluminacionEstudio();
+            
+            // Inicializar motor de renderizado
+            motorRenderizado = new MotorRenderizado();
+            
+            panelVisualizacion.DoubleBuffered(true);
+
+            // Eventos del mouse
+            panelVisualizacion.MouseDown += PanelVisualizacion_MouseDown;
+            panelVisualizacion.MouseMove += PanelVisualizacion_MouseMove;
+            panelVisualizacion.MouseUp += PanelVisualizacion_MouseUp;
+            panelVisualizacion.MouseWheel += PanelVisualizacion_MouseWheel;
+            
+            // Inicializar controles
+            InicializarControles();
+        }
+
+        private void InicializarControles()
+        {
+            // Configurar ComboBox de Textura
+            comboTextura.SelectedIndex = 0; // Sólido por defecto
+            comboTextura.SelectedIndexChanged += ComboBoxTextura_SelectedIndexChanged;
+            
+            // Configurar ComboBox de Material
+            comboMaterial.SelectedIndex = 0; // Plástico por defecto
+            comboMaterial.SelectedIndexChanged += ComboBoxMaterial_SelectedIndexChanged;
+            
+            // Configurar ComboBox de Ambiente (Hora del día)
+            // Los items ya están en el Designer: Día, Tarde, Noche, Amanecer, Atardecer
+            comboAmbiente.SelectedIndex = 0; // Día por defecto
+            comboAmbiente.SelectedIndexChanged += ComboBoxAmbiente_SelectedIndexChanged;
+            
+            // Configurar TrackBar de Intensidad de Luz de la ESCENA (no del material)
+            trackBarBrillo.Minimum = 5;
+            trackBarBrillo.Maximum = 35;
+            trackBarBrillo.Value = (int)(cilindro.Iluminacion.IntensidadLuz * 10);
+            trackBarBrillo.Scroll += TrackBarIntensidadLuz_Scroll;
+            label11.Text = $"Intensidad Luz: {(trackBarBrillo.Value / 10f):F1}";
+        }
+
+        #region Eventos de Mouse para Interacción 3D
+
+        private void PanelVisualizacion_MouseDown(object sender, MouseEventArgs e)
+        {
+            lastMousePos = e.Location;
+            if (e.Button == MouseButtons.Left)
+            {
+                isRotating = true;
+                panelVisualizacion.Cursor = Cursors.Hand;
+            }
+            else if (e.Button == MouseButtons.Right)
+            {
+                isMoving = true;
+                panelVisualizacion.Cursor = Cursors.SizeAll;
+            }
+        }
+
+        private void PanelVisualizacion_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isRotating)
+            {
+                int deltaX = e.X - lastMousePos.X;
+                int deltaY = e.Y - lastMousePos.Y;
+                float nuevaRotY = cilindro.Rotacion.Y + deltaX * 0.5f;
+                float nuevaRotX = cilindro.Rotacion.X + deltaY * 0.5f;
+                cilindro.Rotacion = new Point3D(nuevaRotX, nuevaRotY, cilindro.Rotacion.Z);
+                numericRotacionX.Value = (decimal)(nuevaRotX % 360);
+                numericRotacionY.Value = (decimal)(nuevaRotY % 360);
+                panelVisualizacion.Invalidate();
+                lastMousePos = e.Location;
+            }
+            else if (isMoving)
+            {
+                int deltaX = e.X - lastMousePos.X;
+                int deltaY = e.Y - lastMousePos.Y;
+                float escalaMovimiento = 0.01f;
+                float nuevaPosX = cilindro.Posicion.X + deltaX * escalaMovimiento;
+                float nuevaPosY = cilindro.Posicion.Y - deltaY * escalaMovimiento;
+                cilindro.Posicion = new Point3D(nuevaPosX, nuevaPosY, cilindro.Posicion.Z);
+                numericPosX.Value = (decimal)nuevaPosX;
+                numericPosY.Value = (decimal)nuevaPosY;
+                panelVisualizacion.Invalidate();
+                lastMousePos = e.Location;
+            }
+        }
+
+        private void PanelVisualizacion_MouseUp(object sender, MouseEventArgs e)
+        {
+            isRotating = false;
+            isMoving = false;
+            panelVisualizacion.Cursor = Cursors.Default;
+        }
+
+        private void PanelVisualizacion_MouseWheel(object sender, MouseEventArgs e)
+        {
+            float cambioEscala = e.Delta > 0 ? 0.1f : -0.1f;
+            float nuevaEscalaX = Math.Max(0.1f, cilindro.Escala.X + cambioEscala);
+            float nuevaEscalaY = Math.Max(0.1f, cilindro.Escala.Y + cambioEscala);
+            float nuevaEscalaZ = Math.Max(0.1f, cilindro.Escala.Z + cambioEscala);
+            cilindro.Escala = new Point3D(nuevaEscalaX, nuevaEscalaY, nuevaEscalaZ);
+            numericEscalaX.Value = (decimal)nuevaEscalaX;
+            numericEscalaY.Value = (decimal)nuevaEscalaY;
+            numericEscalaZ.Value = (decimal)nuevaEscalaZ;
+            panelVisualizacion.Invalidate();
+        }
+
+        #endregion
+
+        #region Renderizado con Motor Avanzado
+
+        private void panelVisualizacion_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            g.Clear(panelVisualizacion.BackColor);
+            
+            // Usar motor de renderizado avanzado
+            motorRenderizado.RenderizarFigura(g, cilindro, panelVisualizacion.Width, panelVisualizacion.Height);
+            
+            // Dibujar instrucciones
+            using (Font font = new Font("Segoe UI", 9, FontStyle.Bold))
+            using (Brush textBrush = new SolidBrush(Color.White))
+            using (Brush bgBrush = new SolidBrush(Color.FromArgb(150, 0, 0, 0)))
+            {
+                string instrucciones = "Click Izq: Rotar | Click Der: Mover | Rueda: Zoom";
+                SizeF size = g.MeasureString(instrucciones, font);
+                g.FillRectangle(bgBrush, 5, 5, size.Width + 10, size.Height + 10);
+                g.DrawString(instrucciones, font, textBrush, 10, 10);
+            }
+        }
+
+        #endregion
+
+        #region Eventos de Controles de Transformación
+
+        private void numericPos_ValueChanged(object sender, EventArgs e)
+        {
+            cilindro.Posicion = new Point3D(
+                (float)numericPosX.Value,
+                (float)numericPosY.Value,
+                (float)numericPosZ.Value
+            );
+            panelVisualizacion.Invalidate();
+        }
+
+        private void numericRotacion_ValueChanged(object sender, EventArgs e)
+        {
+            cilindro.Rotacion = new Point3D(
+                (float)numericRotacionX.Value,
+                (float)numericRotacionY.Value,
+                (float)numericRotacionZ.Value
+            );
+            panelVisualizacion.Invalidate();
+        }
+
+        private void numericEscala_ValueChanged(object sender, EventArgs e)
+        {
+            cilindro.Escala = new Point3D(
+                (float)numericEscalaX.Value,
+                (float)numericEscalaY.Value,
+                (float)numericEscalaZ.Value
+            );
+            panelVisualizacion.Invalidate();
+        }
+
+        #endregion
+
+        #region Eventos de Texturas y Materiales
+
+        private void ComboBoxTextura_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Mapear índice del ComboBox a TipoTextura
+            switch (comboTextura.SelectedIndex)
+            {
+                case 0: cilindro.Material.Textura = TipoTextura.Solido; break;
+                case 1: cilindro.Material.Textura = TipoTextura.Cuadricula; break;
+                case 2: cilindro.Material.Textura = TipoTextura.Rayas; break;
+                case 3: cilindro.Material.Textura = TipoTextura.RayasVerticales; break;
+                case 4: cilindro.Material.Textura = TipoTextura.Puntos; break;
+                case 5: cilindro.Material.Textura = TipoTextura.Degradado; break;
+                case 6: cilindro.Material.Textura = TipoTextura.Marmol; break;
+                case 7: cilindro.Material.Textura = TipoTextura.Ladrillo; break;
+            }
+            panelVisualizacion.Invalidate();
+        }
+
+        private void ComboBoxMaterial_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Color colorActual = cilindro.Material.ColorDifuso;
+            
+            // GUARDAR la textura actual y propiedades antes de cambiar material
+            TipoTextura texturaActual = cilindro.Material.Textura;
+            Color colorSecundario = cilindro.Material.ColorSecundario;
+            float escalaTextura = cilindro.Material.EscalaTextura;
+            
+            // Aplicar material predefinido según selección
+            switch (comboMaterial.SelectedIndex)
+            {
+                case 0: // Plástico
+                    cilindro.Material = Material.CrearPlastico(colorActual);
+                    break;
+                case 1: // Metálico
+                    cilindro.Material = Material.CrearMetalico(colorActual);
+                    break;
+                case 2: // Vidrio
+                    cilindro.Material = Material.CrearVidrio(colorActual);
+                    break;
+                case 3: // Oro
+                    cilindro.Material = Material.CrearOro(colorActual);
+                    break;
+            }
+            
+            // RESTAURAR la textura y propiedades que tenía antes
+            cilindro.Material.Textura = texturaActual;
+            cilindro.Material.ColorSecundario = colorSecundario;
+            cilindro.Material.EscalaTextura = escalaTextura;
+            
+            panelVisualizacion.Invalidate();
+        }
+
+        private void TrackBarBrillo_Scroll(object sender, EventArgs e)
+        {
+            cilindro.Material.Brillo = trackBarBrillo.Value;
+            label11.Text = $"Brillo: {trackBarBrillo.Value}";
+            panelVisualizacion.Invalidate();
+        }
+
+        private void TrackBarIntensidadLuz_Scroll(object sender, EventArgs e)
+        {
+            // Controlar SOLO la intensidad de luz de la ESCENA (fondo/ambiente)
+            // NO afecta el brillo del material de la figura
+            cilindro.Iluminacion.IntensidadLuz = trackBarBrillo.Value / 10f;
+            label11.Text = $"Intensidad Luz: {(trackBarBrillo.Value / 10f):F1}";
+            panelVisualizacion.Invalidate();
+        }
+
+        private void ComboBoxAmbiente_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Cambiar iluminación DE LA ESCENA según la hora del día
+            switch (comboAmbiente.SelectedIndex)
+            {
+                case 0: // Día - Luz brillante y blanca
+                    cilindro.Iluminacion.DireccionLuz = new Point3D(0.3f, -0.8f, 0.5f);
+                    cilindro.Iluminacion.ColorLuz = Color.White;
+                    cilindro.Iluminacion.IntensidadLuz = 2.2f;
+                    cilindro.Iluminacion.ColorAmbiente = Color.FromArgb(135, 206, 235); // Azul cielo claro
+                    cilindro.Iluminacion.IntensidadAmbiente = 0.8f;
+                    cilindro.Iluminacion.Contraste = 1.3f;
+                    // Cambiar color de fondo del panel
+                    panelVisualizacion.BackColor = Color.FromArgb(135, 206, 250); // Azul cielo
+                    break;
+
+                case 1: // Tarde - Luz cálida suave
+                    cilindro.Iluminacion.DireccionLuz = new Point3D(0.6f, -0.5f, 0.6f);
+                    cilindro.Iluminacion.ColorLuz = Color.FromArgb(255, 248, 220); // Amarillo cálido
+                    cilindro.Iluminacion.IntensidadLuz = 1.8f;
+                    cilindro.Iluminacion.ColorAmbiente = Color.FromArgb(255, 222, 173); // Beige cálido
+                    cilindro.Iluminacion.IntensidadAmbiente = 0.6f;
+                    cilindro.Iluminacion.Contraste = 1.4f;
+                    // Cambiar color de fondo del panel
+                    panelVisualizacion.BackColor = Color.FromArgb(255, 235, 205); // Beige claro
+                    break;
+
+                case 2: // Noche - Luz tenue y azulada
+                    cilindro.Iluminacion.DireccionLuz = new Point3D(0.2f, -0.3f, 0.9f);
+                    cilindro.Iluminacion.ColorLuz = Color.FromArgb(173, 216, 230); // Azul claro
+                    cilindro.Iluminacion.IntensidadLuz = 0.8f;
+                    cilindro.Iluminacion.ColorAmbiente = Color.FromArgb(25, 25, 112); // Azul oscuro
+                    cilindro.Iluminacion.IntensidadAmbiente = 0.3f;
+                    cilindro.Iluminacion.Contraste = 2.0f;
+                    // Cambiar color de fondo del panel
+                    panelVisualizacion.BackColor = Color.FromArgb(25, 25, 112); // Azul noche oscuro
+                    break;
+
+                case 3: // Amanecer - Luz rosa/naranja suave
+                    cilindro.Iluminacion.DireccionLuz = new Point3D(0.8f, -0.2f, 0.5f);
+                    cilindro.Iluminacion.ColorLuz = Color.FromArgb(255, 182, 193); // Rosa claro
+                    cilindro.Iluminacion.IntensidadLuz = 1.3f;
+                    cilindro.Iluminacion.ColorAmbiente = Color.FromArgb(255, 160, 122); // Salmón
+                    cilindro.Iluminacion.IntensidadAmbiente = 0.5f;
+                    cilindro.Iluminacion.Contraste = 1.6f;
+                    // Cambiar color de fondo del panel
+                    panelVisualizacion.BackColor = Color.FromArgb(255, 192, 203); // Rosa claro
+                    break;
+
+                case 4: // Atardecer - Luz naranja/dorada intensa
+                    cilindro.Iluminacion.DireccionLuz = new Point3D(0.9f, -0.3f, 0.3f);
+                    cilindro.Iluminacion.ColorLuz = Color.FromArgb(255, 140, 0); // Naranja oscuro
+                    cilindro.Iluminacion.IntensidadLuz = 2.0f;
+                    cilindro.Iluminacion.ColorAmbiente = Color.FromArgb(255, 69, 0); // Rojo-naranja
+                    cilindro.Iluminacion.IntensidadAmbiente = 0.7f;
+                    cilindro.Iluminacion.Contraste = 1.8f;
+                    // Cambiar color de fondo del panel
+                    panelVisualizacion.BackColor = Color.FromArgb(255, 99, 71); // Naranja atardecer
+                    break;
+            }
+            
+            panelVisualizacion.Invalidate();
+        }
+
+        #endregion
+
+        #region Eventos de Botones
+
+        private void btnColor_Click(object sender, EventArgs e)
+        {
+            colorDialog1.Color = cilindro.Material.ColorDifuso;
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+            {
+                cilindro.ColorFigura = colorDialog1.Color;
+                cilindro.Material.ColorDifuso = colorDialog1.Color;
+                panelVisualizacion.Invalidate();
+            }
+        }
+
+        private void btnReiniciar_Click(object sender, EventArgs e)
+        {
+            // Reiniciar transformaciones
+            cilindro.Posicion = new Point3D(0, 0, 0);
+            cilindro.Rotacion = new Point3D(0, 0, 0);
+            cilindro.Escala = new Point3D(1, 1, 1);
+            
+            // Reiniciar color y material
+            cilindro.ColorFigura = Color.Green;
+            cilindro.Material = Material.CrearPlastico(Color.Green);
+            
+            // Reiniciar iluminación a Día
+            cilindro.Iluminacion.DireccionLuz = new Point3D(0.3f, -0.8f, 0.5f);
+            cilindro.Iluminacion.ColorLuz = Color.White;
+            cilindro.Iluminacion.IntensidadLuz = 2.2f;
+            cilindro.Iluminacion.ColorAmbiente = Color.FromArgb(135, 206, 235);
+            cilindro.Iluminacion.IntensidadAmbiente = 0.8f;
+            cilindro.Iluminacion.Contraste = 1.3f;
+            
+            // Actualizar controles numéricos
+            numericPosX.Value = 0;
+            numericPosY.Value = 0;
+            numericPosZ.Value = 0;
+            numericRotacionX.Value = 0;
+            numericRotacionY.Value = 0;
+            numericRotacionZ.Value = 0;
+            numericEscalaX.Value = 1;
+            numericEscalaY.Value = 1;
+            numericEscalaZ.Value = 1;
+            
+            // Reiniciar ComboBoxes
+            comboTextura.SelectedIndex = 0; // Sólido
+            comboMaterial.SelectedIndex = 0; // Plástico
+            comboAmbiente.SelectedIndex = 0; // Día
+            
+            // Reiniciar trackbars
+            trackBarBrillo.Value = (int)(cilindro.Iluminacion.IntensidadLuz * 10);
+            label11.Text = $"Intensidad Luz: {(trackBarBrillo.Value / 10f):F1}";
+            
+            panelVisualizacion.Invalidate();
+        }
+
+        #endregion
+
+        #region Timer de Animación
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (!isRotating && !isMoving)
+            {
+                cilindro.Rotacion = new Point3D(
+                    cilindro.Rotacion.X + 0.4f,
+                    cilindro.Rotacion.Y + 0.6f,
+                    cilindro.Rotacion.Z
+                );
+                
+                numericRotacionX.Value = (decimal)(cilindro.Rotacion.X % 360);
+                numericRotacionY.Value = (decimal)(cilindro.Rotacion.Y % 360);
+                
+                panelVisualizacion.Invalidate();
+            }
+        }
+
+        #endregion
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
